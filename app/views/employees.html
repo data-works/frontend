@@ -1,0 +1,17 @@
+<table ng-controller="EmployeesCtrl">
+    <thead>
+    <tr><th>Employees</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Name</td>
+        <td>Title</td>
+        <td>Address</td>
+    </tr>
+    <tr ng-repeat="employee in employees">
+        <td>{{employee.firstName}}&nbsp;{{employee.lastName}}</td>
+        <td>{{employee.title}}</td>
+        <td ng-if="employee.addresses">{{getPrimaryItem(employee.addresses).line1}}</td>
+    </tr>
+    </tbody>
+</table>
