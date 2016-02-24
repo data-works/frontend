@@ -1,0 +1,32 @@
+<md-dialog aria-label="{{employee.firstName}} {{employee.lastName}}">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{employee.firstName}} {{employee.lastName}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <h2 aria-label="Close">X</h2>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px;">
+            <md-content class="md-padding">
+                <p><label>Email: </label><b>{{employee.email}}</b></p>
+                <p><label>Phone: </label><b>{{employee.phone}}</b></p>
+                <p><label>Address: </label><b>{{employee.address}}</b></p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nulla venenatis ante augue. Phasellus volutpat neque ac dui
+                    mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium
+                    ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.
+                </p>
+            </md-content>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

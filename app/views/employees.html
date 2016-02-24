@@ -1,15 +1,23 @@
-<table ng-controller="EmployeesCtrl">
-    <strong>Employees</strong>
-    <tbody>
-    <tr>
-        <td>Name</td>
-        <td>Title</td>
-        <td>Address</td>
-    </tr>
-    <tr ng-repeat="employee in employees">
-        <td>{{employee.firstName}}&nbsp;{{employee.lastName}}</td>
-        <td>{{employee.title}}</td>
-        <td ng-if="employee.addresses">{{getPrimaryItem(employee.addresses).line1}}</td>
-    </tr>
-    </tbody>
-</table>
+<div ng-controller="EmployeesCtrl as sc" layout="row">
+    <div flex="20"></div>
+    <div flex layout-padding>
+        <md-content>
+            <md-input-container class="md-block">
+                <input type="text" placeholder="Search" ng-model="searchEmployees">
+            </md-input-container>
+        </md-content>
+        <md-card>
+            <md-content>
+                <md-list>
+                    <md-list-item class="md-3-line" ng-repeat="e in employees | filter:searchEmployees">
+                        <div class="md-list-item-text" ng-click="showInfo(e)">
+                            <h3>{{e.firstName}} {{e.lastName}}</h3>
+                            <h4>{{e.email}}</h4>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </md-card>
+    </div>
+    <div flex="20"></div>
+</div>
