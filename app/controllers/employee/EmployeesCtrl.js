@@ -24,13 +24,27 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
     $scope.nameFilter = null;
     $scope.employees = [];
 
-
     APIservice.getEmployees().success(function (response) {
         $scope.employees = response;
     });
 
     $scope.getPrimaryItem = function (items) {
         return $filter('filter')(items, {primary:true})[0];
+    };
+
+    $scope.getPhone = function (item) {
+        var phone = this.getPrimaryItem(item);
+        var phoneNumber = "";
+        if(phone.countryCode)
+            phoneNumber += phone.countryCode + " ";
+        if(phone.areaCode)
+            phoneNumber += phone.areaCode + " ";
+        if(phone.number)
+            phoneNumber += phone.number + " ";
+        if(phone.extension)
+            phoneNumber += phone.extension + " ";
+
+        return phoneNumber;
     };
 
     $scope.showInfo = function(info) {
@@ -48,12 +62,33 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 /**
  Dialog Function
  */
-function DialogController($scope, $mdDialog, employee) {
+function DialogController($scope, $mdDialog, $filter, employee) {
     $scope.employee = employee;
+
     $scope.hide = function() {
         $mdDialog.hide();
     };
+
     $scope.cancel = function() {
         $mdDialog.cancel();
+    };
+
+    $scope.getPrimaryItem = function (items) {
+        return $filter('filter')(items, {primary:true})[0];
+    };
+
+    $scope.getPhone = function (item) {
+        var phone = this.getPrimaryItem(item);
+        var phoneNumber = "";
+        if(phone.countryCode)
+            phoneNumber += phone.countryCode + " ";
+        if(phone.areaCode)
+            phoneNumber += phone.areaCode + " ";
+        if(phone.number)
+            phoneNumber += phone.number + " ";
+        if(phone.extension)
+            phoneNumber += phone.extension + " ";
+
+        return phoneNumber;
     };
 }

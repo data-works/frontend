@@ -1,8 +1,11 @@
-<md-dialog aria-label="{{employee.firstName}} {{employee.lastName}}">
+<md-dialog flex="50" aria-label="{{employee.firstName}} {{employee.lastName}}">
     <form>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>{{employee.firstName}} {{employee.lastName}}</h2>
+                <span>
+                    <h2>{{employee.firstName}} {{employee.lastName}}</h2>
+                    <small>{{employee.title}}</small>
+                </span>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <h2 aria-label="Close">X</h2>
@@ -11,15 +14,11 @@
         </md-toolbar>
         <md-dialog-content style="max-width:800px;max-height:810px;">
             <md-content class="md-padding">
-                <p><label>Email: </label><b>{{employee.email}}</b></p>
-                <p><label>Phone: </label><b>{{employee.phone}}</b></p>
-                <p><label>Address: </label><b>{{employee.address}}</b></p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nulla venenatis ante augue. Phasellus volutpat neque ac dui
-                    mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium
-                    ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.
-                </p>
+                <p ng-if="employee.addresses"><ng-md-icon icon="place" size="20" style="fill: grey"></ng-md-icon> {{getPrimaryItem(employee.addresses).line1}}, {{getPrimaryItem(employee.addresses).line2}}</p>
+                <p ng-if="employee.addresses">{{getPrimaryItem(employee.addresses).city}}, {{getPrimaryItem(employee.addresses).state}},
+                    {{getPrimaryItem(employee.addresses).postalCode}}, {{getPrimaryItem(employee.addresses).country}}</p>
+                <p ng-if="employee.emails"><ng-md-icon icon="email" size="20" style="fill: grey"></ng-md-icon> {{getPrimaryItem(employee.emails).email}}</p>
+                <p ng-if="employee.telephones"><ng-md-icon icon="phone" size="20" style="fill: grey"></ng-md-icon> {{getPhone(employee.telephones)}}</p>
             </md-content>
         </md-dialog-content>
         <md-dialog-actions layout="row">

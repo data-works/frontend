@@ -3,6 +3,7 @@
 // Declare app level module which depends on partials, and components
 angular.module('Dataworks', [
   'ngRoute',
+  'ngMdIcons',
   'Dataworks.controllers',
   'Dataworks.services'
 ]).

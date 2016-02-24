@@ -12,7 +12,12 @@
                     <md-list-item class="md-3-line" ng-repeat="e in employees | filter:searchEmployees">
                         <div class="md-list-item-text" ng-click="showInfo(e)">
                             <h3>{{e.firstName}} {{e.lastName}}</h3>
-                            <h4>{{e.email}}</h4>
+                            <h4>{{e.title}}</h4>
+                            <p ng-if="e.addresses"><ng-md-icon icon="place" size="20" style="fill: grey"></ng-md-icon> {{getPrimaryItem(e.addresses).line1}}, {{getPrimaryItem(e.addresses).line2}}</p>
+                            <p ng-if="e.addresses">{{getPrimaryItem(e.addresses).city}}, {{getPrimaryItem(e.addresses).state}},
+                                {{getPrimaryItem(e.addresses).postalCode}}, {{getPrimaryItem(e.addresses).country}}</p>
+                            <p ng-if="e.emails"><ng-md-icon icon="email" size="20" style="fill: grey"></ng-md-icon> {{getPrimaryItem(e.emails).email}}</p>
+                            <p ng-if="e.telephones"><ng-md-icon icon="phone" size="20" style="fill: grey"></ng-md-icon> {{getPhone(e.telephones)}}</p>
                         </div>
                     </md-list-item>
                 </md-list>
