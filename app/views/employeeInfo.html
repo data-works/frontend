@@ -1,4 +1,4 @@
-<md-dialog flex="50" aria-label="{{employee.firstName}} {{employee.lastName}}">
+<md-dialog flex="70" style="max-width:90%; max-height:90%;" aria-label="{{employee.firstName}} {{employee.lastName}}">
     <form>
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -7,18 +7,49 @@
                     <small>{{employee.title}}</small>
                 </span>
                 <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel()">
-                    <h2 aria-label="Close">X</h2>
-                </md-button>
+                <!--<md-button class="md-icon-button" ng-click="cancel()">-->
+                    <!--<h2 aria-label="Close">X</h2>-->
+                <!--</md-button>-->
             </div>
         </md-toolbar>
-        <md-dialog-content style="max-width:800px;max-height:810px;">
+        <md-dialog-content>
             <md-content class="md-padding">
-                <p ng-if="employee.addresses"><ng-md-icon icon="place" size="20" style="fill: grey"></ng-md-icon> {{getPrimaryItem(employee.addresses).line1}}, {{getPrimaryItem(employee.addresses).line2}}</p>
-                <p ng-if="employee.addresses">{{getPrimaryItem(employee.addresses).city}}, {{getPrimaryItem(employee.addresses).state}},
-                    {{getPrimaryItem(employee.addresses).postalCode}}, {{getPrimaryItem(employee.addresses).country}}</p>
-                <p ng-if="employee.emails"><ng-md-icon icon="email" size="20" style="fill: grey"></ng-md-icon> {{getPrimaryItem(employee.emails).email}}</p>
-                <p ng-if="employee.telephones"><ng-md-icon icon="phone" size="20" style="fill: grey"></ng-md-icon> {{getPhone(employee.telephones)}}</p>
+                <div>
+                    <span ng-if="employee.gender === 'female'">
+                        <i class="fa fa-2x fa-female"></i>
+                    </span>
+                    <span ng-if="employee.gender === 'male'">
+                        <i class="fa fa-2x fa-male"></i>
+                    </span>
+                    <div>{{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</div><br/>
+                </div>
+                <div>
+                    <i class="fa fa-birthday-cake"></i>
+                    <div>{{employee.birthdate}}</div><br/>
+                </div>
+                <div ng-repeat="address in employee.addresses">
+                    <i class="fa fa-map-marker"></i> {{address.type}}
+                    <div>{{address.line1}}, {{address.line2}}</div>
+                    <div>{{address.city}}, {{address.state}}, {{address.postalCode}}, {{address.country}}</div><br/>
+                </div>
+                <div ng-repeat="email in employee.emails">
+                    <i class="fa fa-envelope"></i>
+                    <div>{{email.email}}</div><br/>
+                </div>
+                <div ng-repeat="telephone in employee.telephones">
+                    <i class="fa fa-phone"></i>
+                    <div>{{getPhone(telephone)}}</div><br/>
+                </div>
+                <div ng-repeat="task in employee.tasks">
+                    <i class="fa fa-tasks"></i>
+                    <div><strong>{{task.name}}</strong></div>
+                    <div>{{task.description}}</div><br/>
+                </div>
+                <div ng-repeat="team in employee.teams">
+                    <i class="fa fa-users"></i>
+                    <div><strong>{{team.team.name}}</strong></div>
+                    <div>{{team.team.description}}</div><br/>
+                </div>
             </md-content>
         </md-dialog-content>
         <md-dialog-actions layout="row">

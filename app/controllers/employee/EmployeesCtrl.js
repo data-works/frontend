@@ -73,12 +73,7 @@ function DialogController($scope, $mdDialog, $filter, employee) {
         $mdDialog.cancel();
     };
 
-    $scope.getPrimaryItem = function (items) {
-        return $filter('filter')(items, {primary:true})[0];
-    };
-
-    $scope.getPhone = function (item) {
-        var phone = this.getPrimaryItem(item);
+    $scope.getPhone = function (phone) {
         var phoneNumber = "";
         if(phone.countryCode)
             phoneNumber += phone.countryCode + " ";
