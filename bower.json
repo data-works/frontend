@@ -1,14 +1,20 @@
 {
   "name": "DataWorks",
-  "description": "The Frontend of the DataWorks Project",
-  "version": "0.1",
+  "description": "Senior Project - Frontend UI",
+  "main": "index.html",
+  "authors": [
+    "Matthew Sinex <supersinex@me.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/data-works/frontend",
+  "moduleType": [],
   "private": true,
-  "dependencies": {
-    "angular": "~1.4.0",
-    "angular-route": "~1.4.0",
-    "angular-loader": "~1.4.0",
-    "angular-mocks": "~1.4.0",
-    "angular-material": "~1.5.0",
-    "html5-boilerplate": "~5.2.0"
-  }
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
 }
