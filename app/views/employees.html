@@ -1,6 +1,5 @@
-<div ng-controller="EmployeesCtrl as sc" layout="row">
-    <div flex="20"></div>
-    <div flex layout-padding>
+<div ng-controller="EmployeesCtrl as sc" layout="row" layout-align="center center" class="md-overflow-visible ng-scope layout-align-center-center layout-row flex">
+    <div flex="95" flex-gt-xs="95" flex-gt-sm="90" flex-gt-md="80" class="ng-scope flex-gt-xs-95 flex-gt-sm-90 flex-gt-md-80 flex-95" layout-padding>
         <md-content>
             <md-input-container class="md-block">
                 <input type="text" placeholder="Search" ng-model="searchEmployees">
@@ -24,5 +23,4 @@
             </md-content>
         </md-card>
     </div>
-    <div flex="20"></div>
 </div>
