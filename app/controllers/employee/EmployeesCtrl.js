@@ -21,8 +21,23 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 })
 
 .controller('EmployeesCtrl', function($scope, $filter, APIservice, $mdDialog) {
+    $scope.w = window.innerWidth;
+    $scope.h = window.innerHeight;
+
     $scope.nameFilter = null;
     $scope.employees = [];
+
+    $scope.headers = [
+        {
+            title: "Name"
+        },
+        {
+            title: "Email Address"
+        },
+        {
+            title: "Country"
+        }
+    ]
 
     APIservice.getEmployees().success(function (response) {
         $scope.employees = response;
@@ -62,7 +77,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 /**
  Dialog Function
  */
-function DialogController($scope, $mdDialog, $filter, employee) {
+function DialogController($scope, $mdDialog, employee) {
     $scope.employee = employee;
 
     $scope.hide = function() {
