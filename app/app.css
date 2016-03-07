@@ -1,0 +1,21 @@
+.flexing50 {
+    width: 33%;
+}
+
+.mar17 {
+    margin-right: 17px;
+}
+
+.subHeadFlexing {
+    margin-right: 17px;
+}
+
+@media (max-width: 600px) {
+    .flexing50 {
+        width: 50%;
+    }
+
+    .mar17 {
+        margin-right: 24px;
+    }
+}

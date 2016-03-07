@@ -23,27 +23,27 @@
         <md-card>
             <md-content layout="column">
                 <md-list class="md-whiteframe-z3">
-                    <md-list layout="row" flex>
-                        <md-subheader flex="25">Name</md-subheader>
-                        <md-subheader flex="50">Email Address</md-subheader>
-                        <md-subheader flex="30">Country</md-subheader>
+                    <md-list layout="row" class="subHeadFlexing">
+                        <md-list-item style="width: 27%">Name</md-list-item>
+                        <md-list-item style="width: 33%;">Email Address</md-list-item>
+                        <md-list-item style="width: 33%; margin-right: 17px;" hide-xs>Country</md-list-item>
                     </md-list>
                     <md-divider></md-divider>
                     <md-virtual-repeat-container style="height: 55vh;">
-                        <md-list flex>
+                        <md-list>
                             <md-list-item md-virtual-repeat="e in employees | filter:searchEmployees | orderBy:'lastName'"
                                           class="repeated-item secondary-button-padding" ng-click="showInfo(e)">
-                                <div flex="25">
+                                <div class="flexing50">
                                     <h5 class="dwItem">{{e.firstName}} {{e.lastName}}</h5>
                                 </div>
-                                <div flex="50">
+                                <div class="flexing50">
                                     <h5 class="dwItem" ng-if="e.emails">
-                                        {{getPrimaryItem(e.emails).email | limitTo:25}}
-                                        <span ng-if="getPrimaryItem(e.emails).email.length > 25">...</span>
+                                        {{getPrimaryItem(e.emails).email | limitTo:20}}
+                                        <span ng-if="getPrimaryItem(e.emails).email.length > 20">...</span>
                                     </h5>
                                     <h5 class="dwItem" ng-if="!e.emails">None</h5>
                                 </div>
-                                <div flex="25">
+                                <div style="width: 33%" hide-xs>
                                     <h5 class="dwItem" ng-if="e.addresses">
                                         {{getPrimaryItem(e.addresses).country | limitTo:15}}
                                         <span ng-if="getPrimaryItem(e.addresses).country.length > 15">...</span>
