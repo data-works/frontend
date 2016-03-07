@@ -1,5 +1,5 @@
 'use strict';
-
+// 'ng-mfb'
 angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 
 .config(['$routeProvider', function($routeProvider, $mdThemingProvider) {
@@ -26,6 +26,9 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 
     $scope.nameFilter = null;
     $scope.employees = [];
+
+    $scope.sortName = 'none';
+
 
     $scope.headers = [
         {

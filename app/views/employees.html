@@ -1,14 +1,29 @@
+<!-- bower install ng-mfb --save -->
+<!--
+<nav mfb-menu position="tr" effect="zoomin" label="hover here"
+     active-icon="ion-edit" resting-icon="ion-plus-round"
+     toggling-method="click">
+    <button mfb-button icon="paper-airplane" label="menu item"></button>
+</nav>
+-->
 <div ng-controller="EmployeesCtrl as sc" layout="row" layout-align="center center" class="md-overflow-visible ng-scope layout-align-center-center layout-row flex">
     <div flex="95" flex-gt-xs="95" flex-gt-sm="90" flex-gt-md="80" class="ng-scope flex-gt-xs-95 flex-gt-sm-90 flex-gt-md-80 flex-95" layout-padding>
-        <md-content>
-            <md-input-container class="md-block">
-                <input type="text" placeholder="Search" ng-model="searchEmployees">
-            </md-input-container>
-        </md-content>
+        <form layout layout-align="center" layout-padding>
+            <div layout="row" flex>
+                <md-input-container flex class="md-block">
+                    <input flex type="text" placeholder="Search" ng-model="searchEmployees">
+                </md-input-container>
+                <div>
+                    <md-button class="md-fab md-primary md-mini" ng-click="searchEmployees = ''" aria-label="Clear">
+                        <i class="fa fa-times"></i>
+                    </md-button>
+                </div>
+            </div>
+        </form>
         <md-card>
             <md-content layout="column">
-                <md-list class="md-whiteframe-z1">
-                    <md-list layout="row">
+                <md-list class="md-whiteframe-z3">
+                    <md-list layout="row" flex>
                         <md-subheader flex="25">Name</md-subheader>
                         <md-subheader flex="50">Email Address</md-subheader>
                         <md-subheader flex="30">Country</md-subheader>
@@ -16,18 +31,24 @@
                     <md-divider></md-divider>
                     <md-virtual-repeat-container style="height: 55vh;">
                         <md-list flex>
-                            <md-list-item md-virtual-repeat="e in employees | filter:searchEmployees"
+                            <md-list-item md-virtual-repeat="e in employees | filter:searchEmployees | orderBy:'lastName'"
                                           class="repeated-item secondary-button-padding" ng-click="showInfo(e)">
                                 <div flex="25">
                                     <h5 class="dwItem">{{e.firstName}} {{e.lastName}}</h5>
                                 </div>
                                 <div flex="50">
-                                    <h5 class="dwItem" ng-if="e.emails">{{getPrimaryItem(e.emails).email}}</h5>
-                                    <h5 class="dwItem" ng-if="!e.emails">No Email Address</h5>
+                                    <h5 class="dwItem" ng-if="e.emails">
+                                        {{getPrimaryItem(e.emails).email | limitTo:25}}
+                                        <span ng-if="getPrimaryItem(e.emails).email.length > 25">...</span>
+                                    </h5>
+                                    <h5 class="dwItem" ng-if="!e.emails">None</h5>
                                 </div>
                                 <div flex="25">
-                                    <h5 class="dwItem" ng-if="e.addresses">{{getPrimaryItem(e.addresses).country}}</h5>
-                                    <h5 class="dwItem" ng-if="!e.addresses">No Country</h5>
+                                    <h5 class="dwItem" ng-if="e.addresses">
+                                        {{getPrimaryItem(e.addresses).country | limitTo:15}}
+                                        <span ng-if="getPrimaryItem(e.addresses).country.length > 15">...</span>
+                                    </h5>
+                                    <h5 class="dwItem" ng-if="!e.addresses">None</h5>
                                 </div>
                                 <md-divider></md-divider>
                             </md-list-item>
