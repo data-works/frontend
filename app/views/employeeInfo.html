@@ -1,63 +1,131 @@
-<md-dialog flex="70" style="max-width:90%; max-height:90%;
-width: 85%; height: 90%; border-radius: 0;" aria-label="{{employee.firstName}} {{employee.lastName}}">
+<md-dialog class="dialogWindow" aria-label="{{employee.firstName}} {{employee.lastName}}">
     <form>
         <md-toolbar>
-            <div class="md-toolbar-tools">
+            <div class="md-toolbar-tools dialogTB">
                 <span>
                     <h2>{{employee.firstName}} {{employee.lastName}}</h2>
                     <small>{{employee.title}}</small>
                 </span>
                 <span flex></span>
-                <!--<md-button class="md-icon-button" ng-click="cancel()">-->
-                    <!--<h2 aria-label="Close">X</h2>-->
-                <!--</md-button>-->
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <i class="fa fa-lg fa-times"></i>
+                </md-button>
             </div>
         </md-toolbar>
         <md-dialog-content>
             <md-content class="md-padding">
-                <div>
-                    <span ng-if="employee.gender === 'female'">
-                        <i class="fa fa-2x fa-female"></i>
-                    </span>
-                    <span ng-if="employee.gender === 'male'">
-                        <i class="fa fa-2x fa-male"></i>
-                    </span>
-                    <div>{{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</div><br/>
+                <div layout="row" layout-align="center center">
+                    <h3 ng-if="employee.gender === 'female'">
+                        <i class="fa fa-female"></i>
+                        {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
+                    </h3>
+                    <h3 ng-if="employee.gender === 'male'">
+                        <i class="fa fa-male"></i>
+                        {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
+                    </h3>
                 </div>
-                <div>
+                <div layout="row" layout-align="center center" layout-padding>
                     <i class="fa fa-birthday-cake"></i>
-                    <div>{{employee.birthdate}}</div><br/>
+                    <h4>{{employee.birthdate}}</h4>
                 </div>
-                <div ng-repeat="address in employee.addresses">
-                    <i class="fa fa-map-marker"></i> {{address.type}}
-                    <div>{{address.line1}}, {{address.line2}}</div>
-                    <div>{{address.city}}, {{address.state}}, {{address.postalCode}}, {{address.country}}</div><br/>
+                <md-divider></md-divider>
+
+                <!-- Addresses -->
+                <div layout="row" ng-if="employee.addresses != null" class="empRow">
+                    <div flex="40">
+                        <h4>Address:</h4>
+                    </div>
+                    <div flex="60">
+                        <md-list>
+                            <md-list-item ng-repeat="address in employee.addresses" class="secondary-button-padding">
+                                <md-list-item-text>
+                                    <h5><i class="fa fa-map-marker"></i> {{address.type}}</h5>
+                                    <h5>{{address.line1}}, {{address.line2}}</h5>
+                                    <h5>{{address.city}}, {{address.state}}, {{address.postalCode}}, {{address.country}}</h5>
+                                </md-list-item-text>
+                                <md-divider></md-divider>
+                            </md-list-item>
+                        </md-list>
+                    </div>
                 </div>
-                <div ng-repeat="email in employee.emails">
-                    <i class="fa fa-envelope"></i>
-                    <div>{{email.email}}</div><br/>
+                <md-divider ng-if="employee.addresses != null"></md-divider>
+
+                <!-- Emails -->
+                <div layout="row" ng-if="employee.emails != null" class="empRow">
+                    <div flex="40">
+                        <h4>Email:</h4>
+                    </div>
+                    <div flex="60">
+                        <md-list>
+                            <md-list-item ng-repeat="email in employee.emails" class="secondary-button-padding">
+                                <md-list-item-text>
+                                    <h5><i class="fa fa-envelope"></i>   {{email.email}}</h5>
+                                </md-list-item-text>
+                                <md-divider></md-divider>
+                            </md-list-item>
+                        </md-list>
+                    </div>
                 </div>
-                <div ng-repeat="telephone in employee.telephones">
-                    <i class="fa fa-phone"></i>
-                    <div>{{getPhone(telephone)}}</div><br/>
+                <md-divider ng-if="employee.emails != null"></md-divider>
+
+                <!-- Phone Numbers -->
+                <div layout="row" ng-if="employee.telephones != null" class="empRow">
+                    <div flex="40">
+                        <h4>Phone Number:</h4>
+                    </div>
+                    <div flex="60">
+                        <md-list>
+                            <md-list-item ng-repeat="phone in employee.telephones" class="secondary-button-padding">
+                                <md-list-item-text>
+                                    <h5><i class="fa fa-phone"></i>   {{getPhone(phone)}}</h5>
+                                </md-list-item-text>
+                                <md-divider></md-divider>
+                            </md-list-item>
+                        </md-list>
+                    </div>
                 </div>
-                <div ng-repeat="task in employee.tasks">
-                    <i class="fa fa-tasks"></i>
-                    <div><strong>{{task.name}}</strong></div>
-                    <div>{{task.description}}</div><br/>
+                <md-divider ng-if="employee.telephones != null"></md-divider>
+
+                <!-- Tasks -->
+                <div layout="row" ng-if="employee.tasks != null" class="empRow">
+                    <div flex="40">
+                        <h4>Tasks:</h4>
+                    </div>
+                    <div flex="60">
+                        <md-list>
+                            <md-list-item ng-repeat="task in employee.tasks" class="secondary-button-padding">
+                                <md-list-item-text>
+                                    <h5><i class="fa fa-tasks"></i>   {{task.name}}</h5>
+                                    <h6>{{task.description}}</h6>
+                                </md-list-item-text>
+                                <md-divider></md-divider>
+                            </md-list-item>
+                        </md-list>
+                    </div>
                 </div>
-                <div ng-repeat="team in employee.teams">
-                    <i class="fa fa-users"></i>
-                    <div><strong>{{team.team.name}}</strong></div>
-                    <div>{{team.team.description}}</div><br/>
+                <md-divider ng-if="employee.tasks != null"></md-divider>
+
+                <!-- Teams -->
+                <div layout="row" ng-if="employee.teams != null" class="empRow">
+                    <div flex="40">
+                        <h4>Tasks:</h4>
+                    </div>
+                    <div flex="60">
+                        <md-list>
+                            <md-list-item ng-repeat="team in employee.teams" class="secondary-button-padding">
+                                <md-list-item-text>
+                                    <h5><i class="fa fa-users"></i>  {{team.team.name}}</h5>
+                                    <h6>{{team.team.description}}</h6>
+                                </md-list-item-text>
+                                <md-divider></md-divider>
+                            </md-list-item>
+                        </md-list>
+                    </div>
                 </div>
+
+                <!-- End of Dialog -->
+
             </md-content>
         </md-dialog-content>
-        <md-dialog-actions layout="row">
-            <span flex></span>
-            <md-button ng-click="cancel()">
-                Close
-            </md-button>
-        </md-dialog-actions>
     </form>
 </md-dialog>

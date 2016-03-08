@@ -2,20 +2,44 @@
     width: 33%;
 }
 
-.mar17 {
-    margin-right: 17px;
-}
-
 .subHeadFlexing {
     margin-right: 17px;
 }
 
-@media (max-width: 600px) {
+.subHeadText {
+    color: #2196f3;
+}
+
+/*
+Dialog
+*/
+
+.dialogWindow {
+    border-radius: 0;
+    max-width:90%;
+    max-height:90%;
+    width: 60%;
+    height: 60%;
+}
+
+.dialogTB {
+    padding: 1.3em 0.7em;
+}
+
+.empRow {
+    padding: 1.3em 0;
+}
+
+@media (max-width: 680px) {
     .flexing50 {
         width: 50%;
     }
 
-    .mar17 {
-        margin-right: 24px;
+    .dialogWindow {
+        border-radius: 0;
+        max-width:90%;
+        max-height:90%;
+        width: 85%;
+        height: 85%;
     }
 }

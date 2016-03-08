@@ -21,24 +21,30 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 })
 
 .controller('EmployeesCtrl', function($scope, $filter, APIservice, $mdDialog) {
-    $scope.w = window.innerWidth;
-    $scope.h = window.innerHeight;
+
+    $scope.sortName = 'lastName';
+    $scope.reverse = false;
+    $scope.order = function(sortName) {
+        $scope.reverse = ($scope.sortName === sortName) ?
+            !$scope.reverse : false;
+        $scope.sortName = sortName;
+    };
 
     $scope.nameFilter = null;
     $scope.employees = [];
 
-    $scope.sortName = 'none';
-
-
     $scope.headers = [
         {
-            title: "Name"
+            title: "Name",
+            sortName: "lastName"
         },
         {
-            title: "Email Address"
+            title: "Email Address",
+            sortName: "email"
         },
         {
-            title: "Country"
+            title: "Country",
+            sortName: "country"
         }
     ]
 
