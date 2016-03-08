@@ -1,7 +1,7 @@
 <md-dialog class="dialogWindow" aria-label="{{employee.firstName}} {{employee.lastName}}">
     <form>
         <md-toolbar>
-            <div class="md-toolbar-tools dialogTB">
+            <div class="md-toolbar-tools dialogTB" layout-padding>
                 <span>
                     <h2>{{employee.firstName}} {{employee.lastName}}</h2>
                     <small>{{employee.title}}</small>
@@ -122,6 +122,7 @@
                         </md-list>
                     </div>
                 </div>
+                <md-divider ng-if="employee.teams != null"></md-divider>
 
                 <!-- End of Dialog -->
 
