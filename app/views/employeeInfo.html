@@ -1,13 +1,13 @@
-<md-dialog class="dialogWindow" aria-label="{{employee.firstName}} {{employee.lastName}}">
+<md-dialog class="dialogWindow" aria-label="Employee Info">
     <form>
         <md-toolbar>
             <div class="md-toolbar-tools dialogTB" layout-padding>
                 <span>
-                    <h2>{{employee.firstName}} {{employee.lastName}}</h2>
-                    <small>{{employee.title}}</small>
+                    <h2><span>{{employee.firstName}} {{employee.lastName}}</span></h2>
                 </span>
                 <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel()">
+                <md-button class="md-icon-button" ng-click="cancel()"
+                           aria-label="Close Window">
                     <i class="fa fa-lg fa-times"></i>
                 </md-button>
             </div>
@@ -24,6 +24,9 @@
                         {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
                     </h3>
                 </div>
+                <div ng-if="employee.title != null" layout="row" layout-align="center center">
+                    <h5>{{employee.title | date:'longDate'}}</h5>
+                </div>
                 <div layout="row" layout-align="center center" layout-padding>
                     <i class="fa fa-birthday-cake"></i>
                     <h4>{{employee.birthdate}}</h4>
@@ -32,8 +35,8 @@
 
                 <!-- Addresses -->
                 <div layout="row" ng-if="employee.addresses != null" class="empRow">
-                    <div flex="40">
-                        <h4>Address:</h4>
+                    <div flex="40" layout-align="center center">
+                        <h4 class="infoTextHead">Address:</h4>
                     </div>
                     <div flex="60">
                         <md-list>
@@ -53,7 +56,7 @@
                 <!-- Emails -->
                 <div layout="row" ng-if="employee.emails != null" class="empRow">
                     <div flex="40">
-                        <h4>Email:</h4>
+                        <h4 class="infoTextHead">Email:</h4>
                     </div>
                     <div flex="60">
                         <md-list>
@@ -71,7 +74,7 @@
                 <!-- Phone Numbers -->
                 <div layout="row" ng-if="employee.telephones != null" class="empRow">
                     <div flex="40">
-                        <h4>Phone Number:</h4>
+                        <h4 class="infoTextHead">Phone Number:</h4>
                     </div>
                     <div flex="60">
                         <md-list>
@@ -89,7 +92,7 @@
                 <!-- Tasks -->
                 <div layout="row" ng-if="employee.tasks != null" class="empRow">
                     <div flex="40">
-                        <h4>Tasks:</h4>
+                        <h4 class="infoTextHead">Tasks:</h4>
                     </div>
                     <div flex="60">
                         <md-list>
@@ -108,7 +111,7 @@
                 <!-- Teams -->
                 <div layout="row" ng-if="employee.teams != null" class="empRow">
                     <div flex="40">
-                        <h4>Tasks:</h4>
+                        <h4 class="infoTextHead">Tasks:</h4>
                     </div>
                     <div flex="60">
                         <md-list>
@@ -128,5 +131,8 @@
 
             </md-content>
         </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button layout-align="end end" class="md-raised md-primary" aria-label="Edit Button">Edit</md-button>
+        </md-dialog-actions>
     </form>
 </md-dialog>

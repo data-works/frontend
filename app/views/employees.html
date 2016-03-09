@@ -7,7 +7,8 @@
 </nav>
 -->
 <div ng-controller="EmployeesCtrl as sc" layout="row" layout-align="center center" class="md-overflow-visible ng-scope layout-align-center-center layout-row flex">
-    <div flex="95" flex-gt-xs="95" flex-gt-sm="90" flex-gt-md="80" class="ng-scope flex-gt-xs-95 flex-gt-sm-90 flex-gt-md-80 flex-95" layout-padding>
+    <div flex="95" flex-gt-xs="95" flex-gt-sm="90" flex-gt-md="80" flex-gt-lg="65"
+         class="ng-scope flex-gt-xs-95 flex-gt-sm-90 flex-gt-md-80 flex-gt-lg-65 flex-95" layout-padding>
         <form layout layout-align="center" layout-padding>
             <div layout="row" flex>
                 <md-input-container flex class="md-block">
@@ -25,14 +26,26 @@
                 <md-list>
                     <md-list layout="row" class="subHeadFlexing">
                         <md-list-item class="secondary-button-padding">
-                            <div class="flexing50" ng-click="order('lastName')">
+                            <div class="flexing50 tableHeadLabel" ng-click="order('lastName')">
                                 <h4 class="subHeadText">Name</h4>
+                                <i ng-if="sortName === 'lastName'
+                                        && reverse === false" class="fa fa-arrow-down subArrow"></i>
+                                <i ng-if="sortName === 'lastName'
+                                        && reverse === true" class="fa fa-arrow-up subArrow"></i>
                             </div>
-                            <div class="flexing50" ng-click="order('emails')">
+                            <div class="flexing50 tableHeadLabel" ng-click="order('emails')">
                                 <h4 class="subHeadText">Email Address</h4>
+                                <i ng-if="sortName === 'emails'
+                                        && reverse === false" class="fa fa-arrow-down subArrow"></i>
+                                <i ng-if="sortName === 'emails'
+                                        && reverse === true" class="fa fa-arrow-up subArrow"></i>
                             </div>
-                            <div style="width: 33%" hide-xs ng-click="order('addresses')">
+                            <div style="width: 33%" class="tableHeadLabel" hide-xs ng-click="order('addresses')">
                                 <h4 class="subHeadText">Country</h4>
+                                <i ng-if="sortName === 'addresses'
+                                        && reverse === false" class="fa fa-arrow-down subArrow"></i>
+                                <i ng-if="sortName === 'addresses'
+                                        && reverse === true" class="fa fa-arrow-up subArrow"></i>
                             </div>
                         </md-list-item>
                     </md-list>

@@ -2,12 +2,32 @@
     width: 33%;
 }
 
+.tableHeadLabel:focus {
+    outline: none;
+    border: 0;
+}
+
+.tableHeadLabel {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
 .subHeadFlexing {
     margin-right: 17px;
 }
 
-.subHeadText {
+.subHeadText, .subArrow{
     color: #2196f3;
+    display: inline;
+}
+
+.subArrow {
+    padding-left: 0.5em;
 }
 
 /*
@@ -16,10 +36,9 @@ Dialog
 
 .dialogWindow {
     border-radius: 0;
-    max-width:90%;
-    max-height:90%;
-    width: 60%;
-    height: 60%;
+    max-width:85%;
+    max-height:85%;
+    width: 70%;
 }
 
 .dialogTB {
@@ -30,6 +49,10 @@ Dialog
     padding: 1.3em 0;
 }
 
+.infoTextHead {
+    padding-left: 1.1em;
+ }
+
 @media (max-width: 680px) {
     .flexing50 {
         width: 50%;
@@ -37,9 +60,17 @@ Dialog
 
     .dialogWindow {
         border-radius: 0;
-        max-width:90%;
-        max-height:90%;
+        max-width:85%;
+        max-height:85%;
         width: 85%;
-        height: 85%;
+    }
+}
+
+@media (min-width: 900px) {
+    .dialogWindow {
+        border-radius: 0;
+        max-width:85%;
+        max-height:85%;
+        width: 750px;
     }
 }
