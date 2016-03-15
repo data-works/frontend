@@ -1,3 +1,15 @@
+.parent-container {
+    position:relative;
+}
+
+.speed-dial {
+    position: absolute;
+}
+
+.md-fab:hover, .md-fab.md-focused {
+    background-color: #135a91 !important;
+}
+
 .flexing50 {
     width: 33%;
 }

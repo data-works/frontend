@@ -48,6 +48,11 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
         }
     ]
 
+    /**
+     * FAB variable(s)
+     */
+    this.isOpen = false;
+
     APIservice.getEmployees().success(function (response) {
         $scope.employees = response;
     });
@@ -81,6 +86,15 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
             templateUrl: './views/employeeInfo.html'
         });
     };
+
+    $scope.addEmployee = function(ev) {
+        $mdDialog.show({
+            clickOutSideToClose : true,
+            targetEvent: ev,
+            controller: AddDialog,
+            templateURL: './views/addEmployee.html'
+        })
+    }
 });
 
 /**
@@ -110,4 +124,16 @@ function DialogController($scope, $mdDialog, employee) {
 
         return phoneNumber;
     };
+}
+
+function AddDialog($scope, $mdDialog) {
+
+    $scope.hide = function() {
+        $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
+
 }
