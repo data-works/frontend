@@ -79,16 +79,10 @@
             </md-content>
         </md-card>
     </div>
-
-    <div class="md-padding actionButtons" layout="column">
-        <md-fab-speed-dial md-open="sc.isOpen" md-direction="up"
-                           class="md-fab-bottom-right md-hover-full speed-dial">
-            <md-fab-trigger>
-                <md-button aria-label="Menu" class="md-fab md-primary">
-                    <i class="fa fa-plus fa-lg"></i>
-                </md-button>
-            </md-fab-trigger>
-        </md-fab-speed-dial>
-    </div>
-
 </div>
+
+<mfb-menu template-url="ng-mfb-menu-md.tpl.html" position="br" toggling-method="click"
+          menu-state="isOpen" effect="slidein" >
+    <mfb-button template-url="ng-mfb-button-md.tpl.html" label="Test" ng-click="addEmp(sc.employees)">
+    </mfb-button>
+</mfb-menu>

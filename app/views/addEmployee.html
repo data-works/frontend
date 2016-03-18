@@ -1,5 +1,32 @@
-<md-dialog class="dialogWindow" aria-label="Add Employee">
-    <md-content>
-        <p> yo</p>
-    </md-content>
+<md-dialog class="dialogWindow" aria-label="Employee Info">
+    <md-toolbar>
+        <div class="md-toolbar-tools dialogTB" layout-padding>
+            <span>
+                <h2>Add Employee</h2>
+            </span>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()"
+                       aria-label="Close Add">
+                <i class="fa fa-lg fa-times"></i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <md-content class="md-padding">
+            <div>
+                <form>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>First Name</label>
+                            <input ng-model="firstName">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Last Name</label>
+                            <input ng-model="lastName">
+                        </md-input-container>
+                    </div>
+                </form>
+            </div>
+        </md-content>
+    </md-dialog-content>
 </md-dialog>

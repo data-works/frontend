@@ -1,6 +1,6 @@
 'use strict';
 // 'ng-mfb'
-angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
+angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial', 'ng-mfb'])
 
 .config(['$routeProvider', function($routeProvider, $mdThemingProvider) {
     $routeProvider.when('/employees', {
@@ -51,7 +51,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
     /**
      * FAB variable(s)
      */
-    this.isOpen = false;
+    $scope.isOpen = 'closed';
 
     APIservice.getEmployees().success(function (response) {
         $scope.employees = response;
@@ -87,19 +87,19 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
         });
     };
 
-    $scope.addEmployee = function(ev) {
+    $scope.addEmp = function() {
         $mdDialog.show({
-            clickOutSideToClose : true,
-            targetEvent: ev,
+            clickOutsideToClose : true,
             controller: AddDialog,
-            templateURL: './views/addEmployee.html'
-        })
-    }
+            templateUrl: './views/addEmployee.html'
+        });
+    };
 });
 
 /**
  Dialog Function
  */
+
 function DialogController($scope, $mdDialog, employee) {
     $scope.employee = employee;
 
@@ -124,7 +124,7 @@ function DialogController($scope, $mdDialog, employee) {
 
         return phoneNumber;
     };
-}
+};
 
 function AddDialog($scope, $mdDialog) {
 
@@ -136,4 +136,4 @@ function AddDialog($scope, $mdDialog) {
         $mdDialog.cancel();
     };
 
-}
+};
