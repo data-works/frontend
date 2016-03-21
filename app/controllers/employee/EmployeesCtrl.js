@@ -17,7 +17,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial', 'ng-mfb'])
     $mdThemingProvider
         .theme('default')
         .primaryPalette('blue')
-        .accentPalette('red');
+        .accentPalette('blue');
 })
 
 .controller('EmployeesCtrl', function($scope, $filter, APIservice, $mdDialog) {

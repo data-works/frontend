@@ -15,7 +15,7 @@
                     <input flex type="text" placeholder="Search" ng-model="searchEmployees">
                 </md-input-container>
                 <div>
-                    <md-button class="md-fab md-primary md-mini" ng-click="searchEmployees = ''" aria-label="Clear">
+                    <md-button class="md-fab md-accent md-mini" ng-click="searchEmployees = ''" aria-label="Clear">
                         <i class="fa fa-times"></i>
                     </md-button>
                 </div>
@@ -82,7 +82,7 @@
 </div>
 
 <mfb-menu template-url="ng-mfb-menu-md.tpl.html" position="br" toggling-method="click"
-          menu-state="isOpen" effect="slidein" >
+          menu-state="isOpen" effect="slidein">
     <mfb-button template-url="ng-mfb-button-md.tpl.html" label="Test" ng-click="addEmp(sc.employees)">
     </mfb-button>
 </mfb-menu>
