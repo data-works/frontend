@@ -10,5 +10,13 @@ factory('APIservice', function($http) {
         });
     };
 
+    API.addEmployee = function(employee) {
+        return $http({
+            method : 'POST',
+            url : 'http://dataworks.elasticbeanstalk.com/employee',
+            data : employee,
+        });
+    };
+
     return API;
 });

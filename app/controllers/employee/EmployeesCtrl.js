@@ -1,6 +1,6 @@
 'use strict';
-// 'ng-mfb'
-angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial', 'ng-mfb'])
+
+angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 
 .config(['$routeProvider', function($routeProvider, $mdThemingProvider) {
     $routeProvider.when('/employees', {
@@ -49,13 +49,22 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial', 'ng-mfb'])
     ]
 
     /**
-     * FAB variable(s)
+     * APIService
      */
-    $scope.isOpen = 'closed';
 
     APIservice.getEmployees().success(function (response) {
         $scope.employees = response;
     });
+
+    $scope.newEmployee = {};
+
+    $scope.addEmployee = function() {
+        APIservice.addEmployee($scope.newEmployee).success( function () {
+            APIservice.getEmployees().success(function (response) {
+                $scope.employees = response;
+            });
+        });
+    };
 
     $scope.getPrimaryItem = function (items) {
         return $filter('filter')(items, {primary:true})[0];
@@ -102,8 +111,10 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial', 'ng-mfb'])
     .filter('filterBy', function() {
     return function(array, query) {
 
-        var parts = query && query.trim().split(/\s+/),
-            keys = Object.keys(array[0]);
+        if (array[0] != null) {
+            var parts = query && query.trim().split(/\s+/),
+                keys = Object.keys(array[0]);
+        }
 
         if (!parts || !parts.length) {
             return array;
@@ -150,7 +161,6 @@ function DialogController($scope, $mdDialog, employee) {
 };
 
 function AddDialog($scope, $mdDialog) {
-
     $scope.hide = function() {
         $mdDialog.hide();
     };

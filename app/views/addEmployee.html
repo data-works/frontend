@@ -1,4 +1,4 @@
-<md-dialog class="dialogWindow" aria-label="Employee Info">
+<md-dialog ng-controller="EmployeesCtrl as sc" class="dialogWindow" aria-label="Employee Info">
     <md-toolbar>
         <div class="md-toolbar-tools dialogTB" layout-padding>
             <span>
@@ -14,17 +14,21 @@
     <md-dialog-content>
         <md-content class="md-padding">
             <div>
-                <form>
+                <form ng-submit="addEmployee()">
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>First Name</label>
-                            <input ng-model="firstName">
+                            <input ng-model="newEmployee.firstName">
                         </md-input-container>
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Last Name</label>
-                            <input ng-model="lastName">
+                            <input ng-model="newEmployee.lastName">
                         </md-input-container>
                     </div>
+                    <md-dialog-actions layout="row">
+                        <md-button type="submit" layout-align="end end" class="md-raised md-primary"
+                                   aria-label="Add Button">Save</md-button>
+                    </md-dialog-actions>
                 </form>
             </div>
         </md-content>

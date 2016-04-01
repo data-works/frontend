@@ -1,11 +1,3 @@
-<!-- bower install ng-mfb --save -->
-<!--
-<nav mfb-menu position="tr" effect="zoomin" label="hover here"
-     active-icon="ion-edit" resting-icon="ion-plus-round"
-     toggling-method="click">
-    <button mfb-button icon="paper-airplane" label="menu item"></button>
-</nav>
--->
 <div ng-controller="EmployeesCtrl as sc" layout="row" layout-align="center center" class="md-overflow-visible ng-scope layout-align-center-center layout-row flex">
     <div flex="95" flex-gt-xs="95" flex-gt-sm="90" flex-gt-md="80" flex-gt-lg="65"
          class="ng-scope flex-gt-xs-95 flex-gt-sm-90 flex-gt-md-80 flex-gt-lg-65 flex-95" layout-padding>
@@ -49,7 +41,7 @@
                             </div>
                         </md-list-item>
                     </md-list>
-                <md-divider></md-divider>
+                    <md-divider></md-divider>
                     <md-virtual-repeat-container style="height: 55vh;">
                         <md-list>
                             <md-list-item md-virtual-repeat="e in employees | filterBy:searchEmployees | orderBy:sortName:reverse"
@@ -81,8 +73,26 @@
     </div>
 </div>
 
-<mfb-menu template-url="ng-mfb-menu-md.tpl.html" position="br" active-icon="ion-plus" toggling-method="click"
-          menu-state="isOpen" effect="slidein">
-    <mfb-button template-url="ng-mfb-button-md.tpl.html" label="Test" ng-click="addEmp(sc.employees)">
-    </mfb-button>
-</mfb-menu>
+<div layout="row" layout-align="end end" ng-cloak>
+    <md-fab-speed-dial md-direction="up" class="md-fling md-fab-bottom-right">
+        <md-fab-trigger>
+            <md-button aria-label="Add..." class="md-fab md-primary"><i class="fa fa-plus"></i></md-button>
+        </md-fab-trigger>
+        <md-fab-actions>
+            <md-button aria-label="Add Employee" class="md-primary" ng-click="addEmp()">
+                <md-tooltip md-direction="left">Add Employee</md-tooltip>
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                </span>
+            </md-button>
+            <md-button aria-label="Add Team" class="md-primary">
+                <md-tooltip md-direction="left">Add Team</md-tooltip>
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                </span>
+            </md-button>
+        </md-fab-actions>
+    </md-fab-speed-dial>
+</div>

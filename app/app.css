@@ -1,13 +1,9 @@
-.parent-container {
-    position:relative;
-}
-
-.speed-dial {
+md-fab-speed-dial.md-fab-bottom-right {
+    top: auto;
+    right: 20px;
+    bottom: 20px;
+    left: auto;
     position: absolute;
-}
-
-.md-fab:hover, .md-fab.md-focused {
-    background-color: #135a91 !important;
 }
 
 .flexing50 {
