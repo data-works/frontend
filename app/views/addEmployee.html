@@ -15,18 +15,73 @@
         <md-content class="md-padding">
             <div>
                 <form ng-submit="addEmployee()">
-                    <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-sm>
+
+                    <!-- Name -->
+                    <div layout-gt-xs="row">
+                        <md-input-container class="md-block" flex-gt-xs>
                             <label>First Name</label>
                             <input ng-model="newEmployee.firstName">
                         </md-input-container>
-                        <md-input-container class="md-block" flex-gt-sm>
+                        <md-input-container class="md-block" flex-gt-xs>
                             <label>Last Name</label>
                             <input ng-model="newEmployee.lastName">
                         </md-input-container>
                     </div>
+
+                    <!-- Personal Information -->
+                    <div layout-gt-xs="row">
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label>Gender</label>
+                            <md-select ng-model="newEmployee.gender">
+                                <md-option ng-repeat="gender in genders" ng-value="gender.value">
+                                    {{gender.type}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label>Birthday</label>
+                            <input ng-model="newEmployee.birthday">
+                        </md-input-container>
+                    </div>
+
+                    <!-- Email Address -->
+                    <md-input-container class="md-block">
+                        <label>Email Address</label>
+                        <input ng-model="newEmployee.email">
+                    </md-input-container>
+
+                    <!-- Address -->
+                    <md-input-container class="md-block">
+                        <label>Address</label>
+                        <input ng-model="newEmployee.address">
+                    </md-input-container>
+                    <md-input-container md-no-float class="md-block">
+                        <input ng-model="newEmployee.address2" placeholder="Address 2">
+                    </md-input-container>
+                    <div layout-gt-xs="row">
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label>City</label>
+                            <input ng-model="newEmployee.city">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label>State</label>
+                            <md-select ng-model="newEmployee.state">
+                                <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                                    {{state.abbrev}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label>Postal Code</label>
+                            <input name="postalCode" ng-model="newEmployee.postalCode" placeholder="12345"
+                                   required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                        </md-input-container>
+                    </div>
                     <md-dialog-actions layout="row">
-                        <md-button type="submit" layout-align="end end" class="md-raised md-primary"
+                        <md-button ng-click="cancel()" class="md-raised md-accent"
+                                   aria-label="Cancel Add">Cancel</md-button>
+                        <span flex></span>
+                        <md-button ng-click="hide()" type="submit" class="md-raised md-primary"
                                    aria-label="Add Button">Save</md-button>
                     </md-dialog-actions>
                 </form>

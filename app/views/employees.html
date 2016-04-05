@@ -7,7 +7,7 @@
                     <input flex type="text" placeholder="Search" ng-model="searchEmployees">
                 </md-input-container>
                 <div>
-                    <md-button class="md-icon-button md-accent md-mini" ng-click="searchEmployees = ''" aria-label="Clear">
+                    <md-button class="md-icon-button md-primary md-mini" ng-click="searchEmployees = ''" aria-label="Clear">
                         <i class="fa fa-times"></i>
                     </md-button>
                 </div>
@@ -73,25 +73,19 @@
     </div>
 </div>
 
-<div layout="row" layout-align="end end" ng-cloak>
-    <md-fab-speed-dial md-direction="up" class="md-fling md-fab-bottom-right">
+<div layout="row" layout-align="end end">
+    <md-fab-speed-dial md-direction="up" class="md-scale md-fab-bottom-right" ng-cloak>
         <md-fab-trigger>
             <md-button aria-label="Add..." class="md-fab md-primary"><i class="fa fa-plus"></i></md-button>
         </md-fab-trigger>
         <md-fab-actions>
-            <md-button aria-label="Add Employee" class="md-primary" ng-click="addEmp()">
+            <md-button aria-label="Add Employee" class="md-primary md-fab md-mini" ng-click="addEmp()">
                 <md-tooltip md-direction="left">Add Employee</md-tooltip>
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-user fa-stack-1x fa-inverse"></i>
-                </span>
+                <i class="fa fa-user"></i>
             </md-button>
-            <md-button aria-label="Add Team" class="md-primary">
+            <md-button aria-label="Add Team" class="md-primary md-fab md-mini">
                 <md-tooltip md-direction="left">Add Team</md-tooltip>
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-users fa-stack-1x fa-inverse"></i>
-                </span>
+                <i class="fa fa-users"></i>
             </md-button>
         </md-fab-actions>
     </md-fab-speed-dial>

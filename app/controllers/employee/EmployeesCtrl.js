@@ -2,7 +2,7 @@
 
 angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 
-.config(['$routeProvider', function($routeProvider, $mdThemingProvider) {
+.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/employees', {
         templateUrl: 'views/employees.html',
         controller: 'EmployeesCtrl'
@@ -17,11 +17,15 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
     $mdThemingProvider
         .theme('default')
         .primaryPalette('blue')
-        .accentPalette('blue');
+        .accentPalette('red');
 })
 
 .controller('EmployeesCtrl', function($scope, $filter, APIservice, $mdDialog) {
 
+    /**
+     * Sorting
+     * @type {string}
+     */
     $scope.sortName = 'lastName';
     $scope.reverse = false;
     $scope.order = function(sortName) {
@@ -30,26 +34,30 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
         $scope.sortName = sortName;
     };
 
+    /**
+     * Variables, Arrays, Objects
+     * @type {null}
+     */
     $scope.nameFilter = null;
     $scope.employees = [];
 
-    $scope.headers = [
-        {
-            title: "Name",
-            sortName: "lastName"
-        },
-        {
-            title: "Email Address",
-            sortName: "email"
-        },
-        {
-            title: "Country",
-            sortName: "country"
-        }
-    ]
+    // Genders
+    $scope.genders = [
+        {type: "Male", value: "male"},
+        {type: "Female", value: "female"},
+        {type: "Prefer Not To Specify", value: null}
+    ];
+
+    // States
+    $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
+    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+    'WY').split(' ').map(function(state) {
+        return {abbrev: state};
+    });
+
 
     /**
-     * APIService
+     * APIService functions
      */
 
     APIservice.getEmployees().success(function (response) {
@@ -65,6 +73,12 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
             });
         });
     };
+
+    /**
+     * Methods for handling data
+     * @param items
+     * @returns {*}
+     */
 
     $scope.getPrimaryItem = function (items) {
         return $filter('filter')(items, {primary:true})[0];
@@ -84,6 +98,11 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 
         return phoneNumber;
     };
+
+    /**
+     * Dialog Functions
+     * @param info
+     */
 
     $scope.showInfo = function(info) {
         $mdDialog.show({
@@ -106,7 +125,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 })
 
 /**
- * Search multiple fields separated by a space
+ * Search multiple fields separated by a space. Custom filter.
  */
     .filter('filterBy', function() {
     return function(array, query) {
@@ -131,7 +150,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 });
 
 /**
- Dialog Function
+ Dialog Function(s)
  */
 
 function DialogController($scope, $mdDialog, employee) {
