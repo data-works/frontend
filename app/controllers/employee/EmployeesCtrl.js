@@ -171,6 +171,14 @@ function DialogController($scope, $mdDialog, employee, APIservice) {
         });
     };
 
+    $scope.edit = function() {
+        $scope.employee.firstName = "temporary";
+        APIservice.editEmployee($scope.employee).success( function () {
+            console.log("Employee edited.");
+            $mdDialog.hide();
+        });
+    };
+
     $scope.getPhone = function (phone) {
         var phoneNumber = "";
         if(phone.countryCode)

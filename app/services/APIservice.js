@@ -14,7 +14,7 @@ factory('APIservice', function($http) {
         return $http({
             method : 'POST',
             url : 'http://dataworks.elasticbeanstalk.com/employee',
-            data : employee,
+            data : employee
         });
     };
 
@@ -22,6 +22,14 @@ factory('APIservice', function($http) {
         return $http({
             method : 'DELETE',
             url : 'http://dataworks.elasticbeanstalk.com/employee/' + employee.id
+        });
+    };
+
+    API.editEmployee = function(employee) {
+        return $http({
+            method : 'PUT',
+            url : 'http://dataworks.elasticbeanstalk.com/employee',
+            data : employee
         });
     };
 
