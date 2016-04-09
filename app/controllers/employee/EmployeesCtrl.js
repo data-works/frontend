@@ -153,7 +153,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
  Dialog Function(s)
  */
 
-function DialogController($scope, $mdDialog, employee) {
+function DialogController($scope, $mdDialog, employee, APIservice) {
     $scope.employee = employee;
 
     $scope.hide = function() {
@@ -162,6 +162,13 @@ function DialogController($scope, $mdDialog, employee) {
 
     $scope.cancel = function() {
         $mdDialog.cancel();
+    };
+
+    $scope.delete = function() {
+        APIservice.deleteEmployee($scope.employee).success( function () {
+            console.log("Employee deleted.");
+            $mdDialog.hide();
+        });
     };
 
     $scope.getPhone = function (phone) {

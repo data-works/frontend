@@ -18,5 +18,12 @@ factory('APIservice', function($http) {
         });
     };
 
+    API.deleteEmployee = function(employee) {
+        return $http({
+            method : 'DELETE',
+            url : 'http://dataworks.elasticbeanstalk.com/employee/' + employee.id
+        });
+    };
+
     return API;
 });
