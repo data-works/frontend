@@ -55,7 +55,6 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
         return {abbrev: state};
     });
 
-
     /**
      * APIService functions
      */
@@ -67,7 +66,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
     $scope.newEmployee = {};
 
     $scope.addEmployee = function() {
-        APIservice.addEmployee($scope.newEmployee).success( function () {
+        APIservice.addEmployee($scope.newEmployee).success(function () {
             APIservice.getEmployees().success(function (response) {
                 $scope.employees = response;
             });
