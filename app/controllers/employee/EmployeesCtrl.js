@@ -1,25 +1,6 @@
 'use strict';
 
 angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
-
-.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/employees', {
-        templateUrl: 'views/employees.html',
-        controller: 'EmployeesCtrl'
-    })
-
-}])
-
-/**
- * Configuration for dwApp
- */
-.config(function($mdThemingProvider) {
-    $mdThemingProvider
-        .theme('default')
-        .primaryPalette('blue')
-        .accentPalette('red');
-})
-
 .controller('EmployeesCtrl', function($scope, $filter, APIservice, $mdDialog) {
 
     /**

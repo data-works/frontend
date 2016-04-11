@@ -8,5 +8,20 @@ angular.module('Dataworks', [
   'Dataworks.services'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/employees'});
-}]);
+  $routeProvider.
+  when('/employees', {
+    templateUrl: 'views/employees.html',
+    controller: 'EmployeesCtrl'
+  }).
+  when('/teams', {
+    templateUrl: 'views/teams.html',
+    controller: 'TeamsCtrl'
+  }).
+  otherwise({redirectTo: '/employees'});
+}])
+    .config(function($mdThemingProvider) {
+      $mdThemingProvider
+          .theme('default')
+          .primaryPalette('blue')
+          .accentPalette('red');
+    });

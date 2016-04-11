@@ -33,5 +33,35 @@ factory('APIservice', function($http) {
         });
     };
 
+    API.getTeams = function() {
+        return $http({
+            method: 'GET',
+            url: 'http://dataworks.elasticbeanstalk.com/team'
+        });
+    };
+
+    API.addTeam = function(team) {
+        return $http({
+            method : 'POST',
+            url : 'http://dataworks.elasticbeanstalk.com/team',
+            data : team
+        });
+    };
+
+    API.deleteTeam = function(team) {
+        return $http({
+            method : 'DELETE',
+            url : 'http://dataworks.elasticbeanstalk.com/team/' + team.id
+        });
+    };
+
+    API.editTeam = function(team) {
+        return $http({
+            method : 'PUT',
+            url : 'http://dataworks.elasticbeanstalk.com/team',
+            data : team
+        });
+    };
+
     return API;
 });
