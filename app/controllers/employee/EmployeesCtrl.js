@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
-.controller('EmployeesCtrl', function($scope, $filter, APIservice, $mdDialog) {
+.controller('EmployeesCtrl', function($scope, $filter, APIservice, $mdDialog, $location) {
 
     /**
      * Sorting
@@ -50,6 +50,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
         APIservice.addEmployee($scope.newEmployee).success(function () {
             APIservice.getEmployees().success(function (response) {
                 $scope.employees = response;
+                $location.path('/employee');
             });
         });
     };
@@ -133,7 +134,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
  Dialog Function(s)
  */
 
-function DialogController($scope, $mdDialog, employee, APIservice) {
+function DialogController($scope, $mdDialog, $location, employee, APIservice) {
     $scope.employee = employee;
 
     $scope.hide = function() {
@@ -147,6 +148,7 @@ function DialogController($scope, $mdDialog, employee, APIservice) {
     $scope.delete = function() {
         APIservice.deleteEmployee($scope.employee).success( function () {
             console.log("Employee deleted.");
+            $location.path('/employee');
             $mdDialog.hide();
         });
     };
