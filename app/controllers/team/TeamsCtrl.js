@@ -49,6 +49,14 @@ angular.module('Dataworks.controllers')
                 templateUrl: './views/addEmployee.html'
             });
         };
+
+        $scope.addTeam = function() {
+            $mdDialog.show({
+                clickOutsideToClose : true,
+                controller: AddDialog,
+                templateUrl: './views/addTeam.html'
+            });
+        };
     })
 
     /**
