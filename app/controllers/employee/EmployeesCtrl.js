@@ -50,7 +50,12 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
         APIservice.addEmployee($scope.newEmployee).success(function () {
             APIservice.getEmployees().success(function (response) {
                 $scope.employees = response;
-                $location.path('/employee');
+                if($location.$$path == '/teams') {
+                    $location.path('/team');
+                } else if($location.$$path == '/employees') {
+                    $location.path('/employee');
+                }
+
             });
         });
     };
@@ -101,6 +106,14 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
             clickOutsideToClose : true,
             controller: AddDialog,
             templateUrl: './views/addEmployee.html'
+        });
+    };
+
+    $scope.addTeam = function() {
+        $mdDialog.show({
+            clickOutsideToClose : true,
+            controller: AddDialog,
+            templateUrl: './views/addTeam.html'
         });
     };
 })
