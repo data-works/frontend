@@ -85,10 +85,10 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
      * @param info
      */
 
-    $scope.showInfo = function(info) {
+    $scope.showEmployeeInfo = function(info) {
         $mdDialog.show({
             clickOutsideToClose : true,
-            controller: DialogController,
+            controller: EmployeeDialogController,
             locals:{
                 employee: info
             },
@@ -134,7 +134,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
  Dialog Function(s)
  */
 
-function DialogController($scope, $mdDialog, $location, employee, APIservice) {
+function EmployeeDialogController($scope, $mdDialog, $location, employee, APIservice) {
     $scope.employee = employee;
 
     $scope.hide = function() {

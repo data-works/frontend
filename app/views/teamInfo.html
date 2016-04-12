@@ -1,0 +1,40 @@
+<md-dialog class="dialogWindow" aria-label="Team Info">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools dialogTB" layout-padding>
+                <span>
+                    <h2><span>{{team.name}}</span></h2>
+                </span>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()"
+                           aria-label="Close Window">
+                    <i class="fa fa-lg fa-times"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <md-content class="md-padding">
+                <div layout="row" layout-align="center center">
+                    <h4><i class="fa fa-users"></i> {{team.name}}</h4>
+                </div>
+                <md-divider></md-divider>
+
+                <!-- Description -->
+                <div layout="row" class="empRow">
+                    <div flex="25">
+                        <h4 class="infoTextHead">Description:</h4>
+                    </div>
+                    <div flex="75">
+                        <h4>{{team.description}}</h4>
+                    </div>
+                </div>
+                <!-- End of Dialog -->
+
+            </md-content>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button layout-align="end end" class="md-raised md-primary" aria-label="Edit Button" ng-click="edit()">Edit</md-button>
+            <md-button layout-align="end end" class="md-raised md-accent" aria-label="Delete Button" ng-click="delete()">Delete</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

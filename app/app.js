@@ -17,6 +17,12 @@ config(['$routeProvider', function($routeProvider) {
     templateUrl: 'views/teams.html',
     controller: 'TeamsCtrl'
   }).
+  when('/team', {
+    redirectTo: '/teams'
+  }).
+  when('/employee', {
+    redirectTo: '/employees'
+  }).
   otherwise({redirectTo: '/employees'});
 }])
     .config(function($mdThemingProvider) {

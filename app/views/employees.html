@@ -45,7 +45,7 @@
                     <md-virtual-repeat-container style="height: 55vh;">
                         <md-list>
                             <md-list-item md-virtual-repeat="e in employees | filterBy:searchEmployees | orderBy:sortName:reverse"
-                                          class="repeated-item secondary-button-padding" ng-click="showInfo(e)">
+                                          class="repeated-item secondary-button-padding" ng-click="showEmployeeInfo(e)">
                                 <div class="flexing50">
                                     <h5 class="dwItem">{{e.firstName}} {{e.lastName}}</h5>
                                 </div>

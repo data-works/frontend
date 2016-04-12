@@ -38,7 +38,7 @@
                     <md-virtual-repeat-container style="height: 55vh;">
                         <md-list>
                             <md-list-item md-virtual-repeat="team in teams| filterBy:searchTeams | orderBy:sortName:reverse"
-                                          class="repeated-item secondary-button-padding" ng-click="showInfo(e)">
+                                          class="repeated-item secondary-button-padding" ng-click="showTeamInfo(team)">
                                 <div class="flexing50">
                                     <h5 class="dwItem">
                                         {{team.name | limitTo:50}}
