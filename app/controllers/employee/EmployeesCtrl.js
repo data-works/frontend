@@ -15,6 +15,23 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
         $scope.sortName = sortName;
     };
 
+    $scope.customSort = function(value) {
+        if($scope.sortName === 'lastName') {
+            return value.lastName;
+        }
+        if($scope.sortName === 'emails') {
+            if(value.emails) {
+                return $scope.getPrimaryItem(value.emails).email;
+            }
+        }
+        if($scope.sortName === 'addresses') {
+            if(value.addresses) {
+                return $scope.getPrimaryItem(value.addresses).country;
+            }
+        }
+        return;
+    };
+
     /**
      * Variables, Arrays, Objects
      * @type {null}
