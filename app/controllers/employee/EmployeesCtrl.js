@@ -70,8 +70,38 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
     });
 
     $scope.newEmployee = {};
+    $scope.newAddress = {};
+    $scope.newAddresses = [];
+    $scope.newEmail = {};
+    $scope.newEmails = [];
 
     $scope.addEmployee = function() {
+        $scope.newEmail.primary = true;
+        $scope.newAddress.primary = true;
+        $scope.newAddress.country = "USA";
+
+        if($scope.newEmail.email !== undefined) {
+            $scope.newEmails.push($scope.newEmail);
+            $scope.newEmployee.emails = $scope.newEmails;
+        }
+
+        if($scope.newAddress.line1 !== undefined) {
+            if($scope.newAddress.line2 === undefined) {
+                $scope.newAddress.line2 = "";
+            }
+            if($scope.newAddress.city === undefined) {
+                $scope.newAddress.city = "";
+            }
+            if($scope.newAddress.postalCode === undefined) {
+                $scope.newAddress.postalCode = "";
+            }
+            if($scope.newAddress.state === undefined) {
+                $scope.newAddress.state = "";
+            }
+            $scope.newAddresses.push($scope.newAddress);
+            $scope.newEmployee.addresses = $scope.newAddresses;
+        }
+
         APIservice.addEmployee($scope.newEmployee).success(function () {
             APIservice.getEmployees().success(function (response) {
                 $scope.employees = response;

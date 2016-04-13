@@ -46,8 +46,9 @@
                             <md-list-item ng-repeat="address in employee.addresses" class="secondary-button-padding">
                                 <md-list-item-text>
                                     <h5><i class="fa fa-map-marker"></i> {{address.type}}</h5>
-                                    <h5>{{address.line1}}, {{address.line2}}</h5>
-                                    <h5>{{address.city}}, {{address.state}}, {{address.postalCode}}, {{address.country}}</h5>
+                                    <h5>{{address.line1}}<span ng-if="address.line2">,</span> {{address.line2}}</h5>
+                                    <h5>{{address.city}}<span ng-if="address.city">,</span> {{address.state}}<span ng-if="address.state">,</span>
+                                        {{address.postalCode}}<span ng-if="address.postalCode">,</span> {{address.country}}</h5>
                                 </md-list-item-text>
                                 <md-divider></md-divider>
                             </md-list-item>
