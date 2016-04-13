@@ -158,7 +158,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 
     $scope.addEmp = function() {
         $mdDialog.show({
-            clickOutsideToClose : true,
+            clickOutsideToClose : false,
             controller: AddDialog,
             templateUrl: './views/addEmployee.html'
         });
@@ -166,7 +166,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 
     $scope.addTeam = function() {
         $mdDialog.show({
-            clickOutsideToClose : true,
+            clickOutsideToClose : false,
             controller: AddDialog,
             templateUrl: './views/addTeam.html'
         });
@@ -227,17 +227,17 @@ function EmployeeDialogController($scope, $mdDialog, $location, employee, APIser
     };
 
     $scope.delete = function() {
+        APIservice.deleteEmployee($scope.employee).success( function () {
+            console.log("Employee deleted.");
+            $location.path('/employee');
+            $mdDialog.hide();
+        });
         $mdToast.show(
             $mdToast.simple()
                 .textContent('The employee was deleted.')
                 .position('bottom right')
                 .hideDelay(2000)
         );
-        APIservice.deleteEmployee($scope.employee).success( function () {
-            console.log("Employee deleted.");
-            $location.path('/employee');
-            $mdDialog.hide();
-        });
     };
 
     $scope.edit = function() {
@@ -246,6 +246,12 @@ function EmployeeDialogController($scope, $mdDialog, $location, employee, APIser
             console.log("Employee edited.");
             $mdDialog.hide();
         });
+        $mdToast.show(
+            $mdToast.simple()
+                .textContent('Employee edited!')
+                .position('bottom right')
+                .hideDelay(2000)
+        );
     };
 
     $scope.getPhone = function (phone) {

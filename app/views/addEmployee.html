@@ -5,7 +5,7 @@
                 <h2>Add Employee</h2>
             </span>
             <span flex></span>
-            <md-button class="md-icon-button" ng-click="cancel()"
+            <md-button class="md-icon-button" ng-click="cancel(); toastMessage('The add operation was canceled.')"
                        aria-label="Close Add">
                 <i class="fa fa-lg fa-times"></i>
             </md-button>
@@ -77,16 +77,15 @@
                                    ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
                         </md-input-container>
                     </div>
-                    <md-dialog-actions layout="row">
-                        <md-button ng-click="cancel(); toastMessage('The add operation was canceled.')" class="md-raised md-accent"
-                                   aria-label="Cancel Add">Cancel</md-button>
-                        <span flex></span>
-                        <md-button ng-click="hide(); toastMessage('Added an employee!')"
-                                   type="submit" class="md-raised md-primary"
-                                   aria-label="Add Button">Save</md-button>
-                    </md-dialog-actions>
                 </form>
             </div>
         </md-content>
+        <md-dialog-actions layout="row" class="actionBar">
+            <md-button ng-click="cancel(); toastMessage('The add operation was canceled.')" class="md-raised md-accent"
+                       aria-label="Cancel Add">Cancel</md-button>
+            <md-button ng-click="hide(); toastMessage('Added an employee!')"
+                       type="submit" class="md-raised md-primary"
+                       aria-label="Add Button">Save</md-button>
+        </md-dialog-actions>
     </md-dialog-content>
 </md-dialog>

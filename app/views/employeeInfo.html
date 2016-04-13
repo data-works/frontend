@@ -135,9 +135,12 @@
 
             </md-content>
         </md-dialog-content>
-        <md-dialog-actions layout="row">
-            <md-button layout-align="end end" class="md-raised md-primary" aria-label="Edit Button" ng-click="edit()">Edit</md-button>
-            <md-button ng-click="delete()" layout-align="end end" class="md-raised md-accent" aria-label="Delete Button">Delete</md-button>
+
+        <!-- Action Buttons -->
+
+        <md-dialog-actions layout="row" class="actionBar empInfoDialog">
+            <md-button ng-click="delete()" class="md-raised md-accent" aria-label="Delete Button">Delete</md-button>
+            <md-button ng-click="edit()" class="md-raised md-primary" aria-label="Edit Button">Edit</md-button>
         </md-dialog-actions>
     </form>
 </md-dialog>
