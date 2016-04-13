@@ -1,7 +1,15 @@
 'use strict';
 
 angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
-.controller('EmployeesCtrl', function($scope, $filter, APIservice, $mdDialog, $location) {
+
+.config(function($mdThemingProvider) {
+    $mdThemingProvider
+        .theme('default')
+        .primaryPalette('blue')
+        .accentPalette('red');
+})
+
+.controller('EmployeesCtrl', function($scope, $filter, APIservice, $mdDialog, $location, $mdToast) {
 
     /**
      * Sorting
@@ -133,6 +141,19 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
             templateUrl: './views/addTeam.html'
         });
     };
+
+    /**
+     * Toast Function
+     */
+
+    $scope.toastMessage = function(message) {
+        $mdToast.show(
+            $mdToast.simple()
+                .textContent(message)
+                .position('bottom right')
+                .hideDelay(2000)
+        );
+    };
 })
 
 /**
@@ -164,7 +185,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
  Dialog Function(s)
  */
 
-function EmployeeDialogController($scope, $mdDialog, $location, employee, APIservice) {
+function EmployeeDialogController($scope, $mdDialog, $location, employee, APIservice, $mdToast) {
     $scope.employee = employee;
 
     $scope.hide = function() {
@@ -176,6 +197,12 @@ function EmployeeDialogController($scope, $mdDialog, $location, employee, APIser
     };
 
     $scope.delete = function() {
+        $mdToast.show(
+            $mdToast.simple()
+                .textContent('The employee was deleted.')
+                .position('bottom right')
+                .hideDelay(2000)
+        );
         APIservice.deleteEmployee($scope.employee).success( function () {
             console.log("Employee deleted.");
             $location.path('/employee');

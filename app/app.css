@@ -2,6 +2,22 @@
     height: 50px;
 }
 
+md-switch .md-bar {
+    background-color: #236B8E; /* set not selected bar color */
+}
+
+md-switch .md-thumb {
+    color: #236B8E; /* not selected switch color */
+}
+
+md-switch.md-checked .md-bar {
+    background-color: #7f0000; /* set selected bar color */
+}
+
+md-switch.md-checked .md-thumb {
+    color: #7f0000; /* not selected switch color */
+}
+
 md-fab-speed-dial.md-fab-bottom-right {
     top: auto;
     right: 20px;
@@ -38,6 +54,14 @@ md-fab-speed-dial.md-fab-bottom-right {
     display: inline;
 }
 
+.leftPad {
+    padding-left: 1em;
+}
+
+.rightPad {
+    padding-right: 1em;
+}
+
 .subArrow {
     padding-left: 0.5em;
 }
@@ -65,7 +89,7 @@ Dialog
     padding-left: 1.1em;
  }
 
-@media (max-width: 680px) {
+@media (max-width: 600px) {
     .flexing50 {
         width: 50%;
     }
