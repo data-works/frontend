@@ -47,6 +47,8 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
     $scope.nameFilter = null;
     $scope.employees = [];
 
+    $scope.isEditing = false;
+
     // Genders
     $scope.genders = [
         {type: "Male", value: "male"},
@@ -150,7 +152,9 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
             clickOutsideToClose : true,
             controller: EmployeeDialogController,
             locals:{
-                employee: info
+                employee: info,
+                isEditing: $scope.isEditing,
+                newEmployee: $scope.newEmployee
             },
             templateUrl: './views/employeeInfo.html'
         });
@@ -215,7 +219,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
  Dialog Function(s)
  */
 
-function EmployeeDialogController($scope, $mdDialog, $location, employee, APIservice, $mdToast) {
+function EmployeeDialogController($scope, $mdDialog, $location, employee, APIservice, $mdToast, isEditing, newEmployee) {
     $scope.employee = employee;
 
     $scope.hide = function() {
@@ -223,7 +227,17 @@ function EmployeeDialogController($scope, $mdDialog, $location, employee, APIser
     };
 
     $scope.cancel = function() {
+        $location.path('/employee');
         $mdDialog.cancel();
+    };
+
+    $scope.toastMessage = function(message) {
+        $mdToast.show(
+            $mdToast.simple()
+                .textContent(message)
+                .position('bottom right')
+                .hideDelay(2000)
+        );
     };
 
     $scope.delete = function() {
@@ -232,26 +246,17 @@ function EmployeeDialogController($scope, $mdDialog, $location, employee, APIser
             $location.path('/employee');
             $mdDialog.hide();
         });
-        $mdToast.show(
-            $mdToast.simple()
-                .textContent('The employee was deleted.')
-                .position('bottom right')
-                .hideDelay(2000)
-        );
+    };
+
+    $scope.toggleEdit = function () {
+        $scope.isEditing = !isEditing;
     };
 
     $scope.edit = function() {
-        $scope.employee.firstName = "temporary";
         APIservice.editEmployee($scope.employee).success( function () {
             console.log("Employee edited.");
             $mdDialog.hide();
         });
-        $mdToast.show(
-            $mdToast.simple()
-                .textContent('Employee edited!')
-                .position('bottom right')
-                .hideDelay(2000)
-        );
     };
 
     $scope.getPhone = function (phone) {

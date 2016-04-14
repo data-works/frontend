@@ -1,146 +1,245 @@
 <md-dialog class="dialogWindow" aria-label="Employee Info">
-    <form>
-        <md-toolbar>
-            <div class="md-toolbar-tools dialogTB" layout-padding>
+    <md-dialog-content>
+    <div ng-if="!isEditing">
+        <form>
+            <md-toolbar>
+                <div class="md-toolbar-tools dialogTB" layout-padding>
                 <span>
                     <h2><span>{{employee.firstName}} {{employee.lastName}}</span></h2>
                 </span>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="cancel()"
+                               aria-label="Close Window">
+                        <i class="fa fa-lg fa-times"></i>
+                    </md-button>
+                </div>
+            </md-toolbar>
+                <md-content class="md-padding">
+                    <div layout="row" layout-align="center center">
+                        <h3 ng-if="employee.gender === 'female'">
+                            <i class="fa fa-female"></i>
+                            {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
+                        </h3>
+                        <h3 ng-if="employee.gender === 'male'">
+                            <i class="fa fa-male"></i>
+                            {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
+                        </h3>
+                        <h3 ng-if="employee.gender == null">
+                            {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
+                        </h3>
+                    </div>
+                    <div ng-if="employee.title != null" layout="row" layout-align="center center">
+                        <h5>{{employee.title | date:'longDate'}}</h5>
+                    </div>
+                    <div ng-if="employee.birthdate != null" layout="row" layout-align="center center" layout-padding>
+                        <i class="fa fa-birthday-cake"></i>
+                        <h4>{{employee.birthdate}}</h4>
+                    </div>
+                    <md-divider></md-divider>
+
+                    <!-- Addresses -->
+                    <div layout="row" ng-if="employee.addresses != null" class="empRow">
+                        <div flex="40" layout-align="center center">
+                            <h4 class="infoTextHead">Address:</h4>
+                        </div>
+                        <div flex="60">
+                            <md-list>
+                                <md-list-item ng-repeat="address in employee.addresses" class="secondary-button-padding">
+                                    <md-list-item-text>
+                                        <h5><i class="fa fa-map-marker"></i> {{address.type}}</h5>
+                                        <h5>{{address.line1}}<span ng-if="address.line2">,</span> {{address.line2}}</h5>
+                                        <h5>{{address.city}}<span ng-if="address.city">,</span> {{address.state}}<span ng-if="address.state">,</span>
+                                            {{address.postalCode}}<span ng-if="address.postalCode">,</span> {{address.country}}</h5>
+                                    </md-list-item-text>
+                                    <md-divider></md-divider>
+                                </md-list-item>
+                            </md-list>
+                        </div>
+                    </div>
+                    <md-divider ng-if="employee.addresses != null"></md-divider>
+
+                    <!-- Emails -->
+                    <div layout="row" ng-if="employee.emails != null" class="empRow">
+                        <div flex="40">
+                            <h4 class="infoTextHead">Email:</h4>
+                        </div>
+                        <div flex="60">
+                            <md-list>
+                                <md-list-item ng-repeat="email in employee.emails" class="secondary-button-padding">
+                                    <md-list-item-text>
+                                        <h5><i class="fa fa-envelope"></i>   {{email.email}}</h5>
+                                    </md-list-item-text>
+                                    <md-divider></md-divider>
+                                </md-list-item>
+                            </md-list>
+                        </div>
+                    </div>
+                    <md-divider ng-if="employee.emails != null"></md-divider>
+
+                    <!-- Phone Numbers -->
+                    <div layout="row" ng-if="employee.telephones != null" class="empRow">
+                        <div flex="40">
+                            <h4 class="infoTextHead">Phone Number:</h4>
+                        </div>
+                        <div flex="60">
+                            <md-list>
+                                <md-list-item ng-repeat="phone in employee.telephones" class="secondary-button-padding">
+                                    <md-list-item-text>
+                                        <h5><i class="fa fa-phone"></i>   {{getPhone(phone)}}</h5>
+                                    </md-list-item-text>
+                                    <md-divider></md-divider>
+                                </md-list-item>
+                            </md-list>
+                        </div>
+                    </div>
+                    <md-divider ng-if="employee.telephones != null"></md-divider>
+
+                    <!-- Tasks -->
+                    <div layout="row" ng-if="employee.tasks != null" class="empRow">
+                        <div flex="40">
+                            <h4 class="infoTextHead">Tasks:</h4>
+                        </div>
+                        <div flex="60">
+                            <md-list>
+                                <md-list-item ng-repeat="task in employee.tasks" class="secondary-button-padding">
+                                    <md-list-item-text>
+                                        <h5><i class="fa fa-tasks"></i>   {{task.name}}</h5>
+                                        <h6>{{task.description}}</h6>
+                                    </md-list-item-text>
+                                    <md-divider></md-divider>
+                                </md-list-item>
+                            </md-list>
+                        </div>
+                    </div>
+                    <md-divider ng-if="employee.tasks != null"></md-divider>
+
+                    <!-- Teams -->
+                    <div layout="row" ng-if="employee.teams != null" class="empRow">
+                        <div flex="40">
+                            <h4 class="infoTextHead">Tasks:</h4>
+                        </div>
+                        <div flex="60">
+                            <md-list>
+                                <md-list-item ng-repeat="team in employee.teams" class="secondary-button-padding">
+                                    <md-list-item-text>
+                                        <h5><i class="fa fa-users"></i>  {{team.team.name}}</h5>
+                                        <h6>{{team.team.description}}</h6>
+                                    </md-list-item-text>
+                                    <md-divider></md-divider>
+                                </md-list-item>
+                            </md-list>
+                        </div>
+                    </div>
+                    <md-divider ng-if="employee.teams != null"></md-divider>
+
+                    <!-- End of Dialog -->
+
+                </md-content>
+
+            <!-- Action Buttons -->
+
+            <md-dialog-actions layout="row" class="actionBar empInfoDialog">
+                <md-button ng-click="delete()" class="md-raised md-accent" aria-label="Delete Button">Delete</md-button>
+                <md-button ng-click="toggleEdit()" class="md-raised md-primary" aria-label="Edit Button">Edit</md-button>
+            </md-dialog-actions>
+        </form>
+    </div>
+
+
+    <!-- Edit -->
+
+    <div ng-if="isEditing">
+        <md-toolbar>
+            <div class="md-toolbar-tools dialogTB" layout-padding>
+            <span>
+                <h2>Add Employee</h2>
+            </span>
                 <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel()"
-                           aria-label="Close Window">
+                <md-button class="md-icon-button" ng-click="cancel(); toastMessage('The edit operation was canceled.')"
+                           aria-label="Close Edit">
                     <i class="fa fa-lg fa-times"></i>
                 </md-button>
             </div>
         </md-toolbar>
-        <md-dialog-content>
             <md-content class="md-padding">
-                <div layout="row" layout-align="center center">
-                    <h3 ng-if="employee.gender === 'female'">
-                        <i class="fa fa-female"></i>
-                        {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
-                    </h3>
-                    <h3 ng-if="employee.gender === 'male'">
-                        <i class="fa fa-male"></i>
-                        {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
-                    </h3>
-                    <h3 ng-if="employee.gender == null">
-                        {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
-                    </h3>
-                </div>
-                <div ng-if="employee.title != null" layout="row" layout-align="center center">
-                    <h5>{{employee.title | date:'longDate'}}</h5>
-                </div>
-                <div ng-if="employee.birthdate != null" layout="row" layout-align="center center" layout-padding>
-                    <i class="fa fa-birthday-cake"></i>
-                    <h4>{{employee.birthdate}}</h4>
-                </div>
-                <md-divider></md-divider>
+                <div>
+                    <form>
 
-                <!-- Addresses -->
-                <div layout="row" ng-if="employee.addresses != null" class="empRow">
-                    <div flex="40" layout-align="center center">
-                        <h4 class="infoTextHead">Address:</h4>
-                    </div>
-                    <div flex="60">
-                        <md-list>
-                            <md-list-item ng-repeat="address in employee.addresses" class="secondary-button-padding">
-                                <md-list-item-text>
-                                    <h5><i class="fa fa-map-marker"></i> {{address.type}}</h5>
-                                    <h5>{{address.line1}}<span ng-if="address.line2">,</span> {{address.line2}}</h5>
-                                    <h5>{{address.city}}<span ng-if="address.city">,</span> {{address.state}}<span ng-if="address.state">,</span>
-                                        {{address.postalCode}}<span ng-if="address.postalCode">,</span> {{address.country}}</h5>
-                                </md-list-item-text>
-                                <md-divider></md-divider>
-                            </md-list-item>
-                        </md-list>
-                    </div>
+                        <!-- Name -->
+                        <div layout-gt-xs="row">
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>First Name</label>
+                                <input required ng-model="employee.firstName">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>Last Name</label>
+                                <input required ng-model="employee.lastName">
+                            </md-input-container>
+                        </div>
+
+                        <!-- Personal Information -->
+                        <div layout-gt-xs="row">
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label ng-if="employee.gender === null"></label>
+                                <label ng-if="employee.gender != null">Gender</label>
+                                <md-select ng-model="employee.gender">
+                                    <md-option ng-repeat="gender in genders" value="{{gender.value}}">
+                                        {{gender.type}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>Birthday</label>
+                                <input ng-model="newEmployee.birthdate">
+                            </md-input-container>
+                        </div>
+
+                        <!-- Email Address -->
+                        <md-input-container class="md-block">
+                            <label>Email Address</label>
+                            <input ng-model="newEmail.email">
+                        </md-input-container>
+
+                        <!-- Address -->
+                        <div layout-gt-xs="row">
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>Address</label>
+                                <input ng-model="newAddress.line1">
+                            </md-input-container>
+                            <md-input-container md-no-float class="md-block" flex-gt-xs>
+                                <label>Address Line 2 (If Applicable)</label>
+                                <input ng-model="newAddress.line2">
+                            </md-input-container>
+                        </div>
+                        <div layout-gt-xs="row">
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>City</label>
+                                <input ng-model="newAddress.city">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>State</label>
+                                <md-select ng-model="newAddress.state">
+                                    <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                                        {{state.abbrev}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>Postal Code</label>
+                                <input name="postalCode" ng-model="newAddress.postalCode"
+                                       ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                            </md-input-container>
+                        </div>
+                    </form>
                 </div>
-                <md-divider ng-if="employee.addresses != null"></md-divider>
-
-                <!-- Emails -->
-                <div layout="row" ng-if="employee.emails != null" class="empRow">
-                    <div flex="40">
-                        <h4 class="infoTextHead">Email:</h4>
-                    </div>
-                    <div flex="60">
-                        <md-list>
-                            <md-list-item ng-repeat="email in employee.emails" class="secondary-button-padding">
-                                <md-list-item-text>
-                                    <h5><i class="fa fa-envelope"></i>   {{email.email}}</h5>
-                                </md-list-item-text>
-                                <md-divider></md-divider>
-                            </md-list-item>
-                        </md-list>
-                    </div>
-                </div>
-                <md-divider ng-if="employee.emails != null"></md-divider>
-
-                <!-- Phone Numbers -->
-                <div layout="row" ng-if="employee.telephones != null" class="empRow">
-                    <div flex="40">
-                        <h4 class="infoTextHead">Phone Number:</h4>
-                    </div>
-                    <div flex="60">
-                        <md-list>
-                            <md-list-item ng-repeat="phone in employee.telephones" class="secondary-button-padding">
-                                <md-list-item-text>
-                                    <h5><i class="fa fa-phone"></i>   {{getPhone(phone)}}</h5>
-                                </md-list-item-text>
-                                <md-divider></md-divider>
-                            </md-list-item>
-                        </md-list>
-                    </div>
-                </div>
-                <md-divider ng-if="employee.telephones != null"></md-divider>
-
-                <!-- Tasks -->
-                <div layout="row" ng-if="employee.tasks != null" class="empRow">
-                    <div flex="40">
-                        <h4 class="infoTextHead">Tasks:</h4>
-                    </div>
-                    <div flex="60">
-                        <md-list>
-                            <md-list-item ng-repeat="task in employee.tasks" class="secondary-button-padding">
-                                <md-list-item-text>
-                                    <h5><i class="fa fa-tasks"></i>   {{task.name}}</h5>
-                                    <h6>{{task.description}}</h6>
-                                </md-list-item-text>
-                                <md-divider></md-divider>
-                            </md-list-item>
-                        </md-list>
-                    </div>
-                </div>
-                <md-divider ng-if="employee.tasks != null"></md-divider>
-
-                <!-- Teams -->
-                <div layout="row" ng-if="employee.teams != null" class="empRow">
-                    <div flex="40">
-                        <h4 class="infoTextHead">Tasks:</h4>
-                    </div>
-                    <div flex="60">
-                        <md-list>
-                            <md-list-item ng-repeat="team in employee.teams" class="secondary-button-padding">
-                                <md-list-item-text>
-                                    <h5><i class="fa fa-users"></i>  {{team.team.name}}</h5>
-                                    <h6>{{team.team.description}}</h6>
-                                </md-list-item-text>
-                                <md-divider></md-divider>
-                            </md-list-item>
-                        </md-list>
-                    </div>
-                </div>
-                <md-divider ng-if="employee.teams != null"></md-divider>
-
-                <!-- End of Dialog -->
-
             </md-content>
-        </md-dialog-content>
-
-        <!-- Action Buttons -->
-
-        <md-dialog-actions layout="row" class="actionBar empInfoDialog">
-            <md-button ng-click="delete()" class="md-raised md-accent" aria-label="Delete Button">Delete</md-button>
-            <md-button ng-click="edit()" class="md-raised md-primary" aria-label="Edit Button">Edit</md-button>
+        <md-dialog-actions layout="row" class="actionBar">
+            <md-button ng-click="cancel(); toastMessage('The edit operation was canceled.')" class="md-raised md-accent"
+                       aria-label="Cancel Editing">Cancel</md-button>
+            <md-button ng-click="edit(); toastMessage('Edited an employee!')"
+                       type="submit" class="md-raised md-primary"
+                       aria-label="Edit OK Button">Save</md-button>
         </md-dialog-actions>
-    </form>
+    </div>
+    </md-dialog-content>
 </md-dialog>
