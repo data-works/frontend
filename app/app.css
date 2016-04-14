@@ -23,7 +23,7 @@ md-fab-speed-dial.md-fab-bottom-right {
     right: 20px;
     bottom: 20px;
     left: auto;
-    position: absolute;
+    position: fixed;
 }
 
 .flexing50 {
