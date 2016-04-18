@@ -232,6 +232,10 @@ function EmployeeDialogController($scope, $mdDialog, $location, employee, APIser
         $mdDialog.cancel();
     };
 
+    $scope.softCancel = function() {
+        $mdDialog.cancel();
+    };
+
     $scope.toastMessage = function(message) {
         $mdToast.show(
             $mdToast.simple()
