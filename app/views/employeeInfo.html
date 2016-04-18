@@ -85,7 +85,7 @@
                             <md-list>
                                 <md-list-item ng-repeat="phone in employee.telephones" class="secondary-button-padding">
                                     <md-list-item-text>
-                                        <h5><i class="fa fa-phone"></i>   {{getPhone(phone)}}</h5>
+                                        <h5><i class="fa fa-phone"></i>  {{getPhone(phone) | tel}}</h5>
                                     </md-list-item-text>
                                     <md-divider></md-divider>
                                 </md-list-item>
@@ -195,11 +195,19 @@
                             </md-input-container>
                         </div>
 
-                        <!-- Email Address -->
-                        <md-input-container class="md-block">
-                            <label>Email Address</label>
-                            <input ng-model="getPrimaryItem(employee.emails).email">
-                        </md-input-container>
+                        <div layout-gt-xs="row">
+                            <!-- Email Address -->
+                            <md-input-container class="md-block" flex-gt-xs="60">
+                                <label>Email Address</label>
+                                <input ng-model="getPrimaryItem(employee.emails).email">
+                            </md-input-container>
+
+                            <!-- Phone Number -->
+                            <md-input-container class="md-block" flex-gt-xs>
+                                <label>Phone Number</label>
+                                <input type='text' phone-input ng-model="getPrimaryItem(employee.telephones).number">
+                            </md-input-container>
+                        </div>
 
                         <!-- Address -->
                         <div layout-gt-xs="row">

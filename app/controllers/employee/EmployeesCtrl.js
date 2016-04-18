@@ -91,7 +91,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
                 $scope.newEmployee.emails = $scope.newEmails;
             }
 
-            if($scope.newPhone.telephone !== undefined) {
+            if($scope.newPhone.number !== undefined) {
                 $scope.newPhones.push($scope.newPhone);
                 $scope.newEmployee.telephones = $scope.newPhones;
             }
