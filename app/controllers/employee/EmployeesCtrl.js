@@ -316,8 +316,12 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
  Dialog Function(s)
  */
 
-function EmployeeDialogController($scope, $mdDialog, $location, employee, APIservice, $mdToast, isEditing, newEmployee) {
+function EmployeeDialogController($scope, $mdDialog, $location, $filter, employee, APIservice, $mdToast, isEditing, newEmployee) {
     $scope.employee = employee;
+
+    $scope.getPrimaryItem = function (items) {
+        return $filter('filter')(items, {primary:true})[0];
+    };
 
     $scope.hide = function() {
         $mdDialog.hide();

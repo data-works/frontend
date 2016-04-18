@@ -182,7 +182,7 @@
                             <md-input-container class="md-block" flex-gt-xs>
                                 <label ng-if="employee.gender === null"></label>
                                 <label ng-if="employee.gender != null">Gender</label>
-                                <md-select ng-model="employee.gender">
+                                <md-select ng-model="employee.gender" aria-label="Select gender">
                                     <md-option ng-repeat="gender in genders" value="{{gender.value}}">
                                         {{gender.type}}
                                     </md-option>
@@ -205,21 +205,21 @@
                         <div layout-gt-xs="row">
                             <md-input-container class="md-block" flex-gt-xs>
                                 <label>Address</label>
-                                <input ng-model="employee.addresses.line1">
+                                <input ng-model="getPrimaryItem(employee.addresses).line1">
                             </md-input-container>
                             <md-input-container md-no-float class="md-block" flex-gt-xs>
                                 <label>Address Line 2 (If Applicable)</label>
-                                <input ng-model="employee.addresses.line2">
+                                <input ng-model="getPrimaryItem(employee.addresses).line2">
                             </md-input-container>
                         </div>
                         <div layout-gt-xs="row">
                             <md-input-container class="md-block" flex-gt-xs>
                                 <label>City</label>
-                                <input ng-model="employee.addresses.city">
+                                <input ng-model="getPrimaryItem(employee.addresses).city">
                             </md-input-container>
                             <md-input-container class="md-block" flex-gt-xs>
                                 <label>State</label>
-                                <md-select ng-model="employee.addresses.state">
+                                <md-select ng-model="getPrimaryItem(employee.addresses).state">
                                     <md-option ng-repeat="state in states" value="{{state.abbrev}}">
                                         {{state.abbrev}}
                                     </md-option>
@@ -227,7 +227,7 @@
                             </md-input-container>
                             <md-input-container class="md-block" flex-gt-xs>
                                 <label>Postal Code</label>
-                                <input name="postalCode" ng-model="employee.addresses.postalCode"
+                                <input name="postalCode" ng-model="getPrimaryItem(employee.addresses).postalCode"
                                        ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
                             </md-input-container>
                         </div>
