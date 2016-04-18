@@ -11,11 +11,11 @@ md-switch .md-thumb {
 }
 
 md-switch.md-checked .md-bar {
-    background-color: #7f0000; /* set selected bar color */
+    background-color: #236B8E; /* set selected bar color */
 }
 
 md-switch.md-checked .md-thumb {
-    color: #7f0000; /* not selected switch color */
+    color: #236B8E; /* not selected switch color */
 }
 
 md-fab-speed-dial.md-fab-bottom-right {

@@ -139,7 +139,7 @@
             <!-- Action Buttons -->
 
             <md-dialog-actions layout="row" class="actionBar empInfoDialog">
-                <md-button ng-click="delete(); toastMessage('Employee deleted.')" class="md-raised md-accent" aria-label="Delete Button">Delete</md-button>
+                <md-button ng-click="delete(); toastMessage('Employee deleted.')" class="md-raised md-warn" aria-label="Delete Button">Delete</md-button>
                 <md-button ng-click="toggleEdit()" class="md-raised md-primary" aria-label="Edit Button">Edit</md-button>
             </md-dialog-actions>
         </form>
@@ -234,7 +234,7 @@
                 </div>
             </md-content>
         <md-dialog-actions layout="row" class="actionBar">
-            <md-button ng-click="cancel(); toastMessage('The edit operation was canceled.')" class="md-raised md-accent"
+            <md-button ng-click="cancel(); toastMessage('The edit operation was canceled.')" class="md-raised md-warn"
                        aria-label="Cancel Editing">Cancel</md-button>
             <md-button ng-click="edit(); toastMessage('Edited an employee!')"
                        type="submit" class="md-raised md-primary"
