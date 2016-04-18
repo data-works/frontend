@@ -30,6 +30,14 @@ md-fab-speed-dial.md-fab-bottom-right {
     width: 33%;
 }
 
+.flexing33 {
+    width: 33%;
+}
+
+.flexTeam {
+    width: 50%;
+}
+
 .tableHeadLabel:focus {
     outline: none;
     border: 0;
@@ -102,6 +110,10 @@ Dialog
 @media (max-width: 600px) {
     .flexing50 {
         width: 50%;
+    }
+
+    .flexing33 {
+        width: 100%;
     }
 
     .dialogWindow {

@@ -18,14 +18,14 @@
                 <md-list>
                     <md-list layout="row" class="subHeadFlexing">
                         <md-list-item class="secondary-button-padding">
-                            <div class="flexing50 tableHeadLabel" ng-click="order('name')">
+                            <div class="flexing33 tableHeadLabel" ng-click="order('name')">
                                 <h4 class="subHeadText">Name</h4>
                                 <i ng-if="sortName === 'name'
                                         && reverse === false" class="fa fa-arrow-down subArrow"></i>
                                 <i ng-if="sortName === 'name'
                                         && reverse === true" class="fa fa-arrow-up subArrow"></i>
                             </div>
-                            <div style="width: 66%" class="tableHeadLabel" hide-xs ng-click="order('description')">
+                            <div style="width: 66%" class="flexTeam tableHeadLabel" hide-xs ng-click="order('description')">
                                 <h4 class="subHeadText">Description</h4>
                                 <i ng-if="sortName === 'description'
                                         && reverse === false" class="fa fa-arrow-down subArrow"></i>
@@ -39,13 +39,13 @@
                         <md-list>
                             <md-list-item md-virtual-repeat="team in teams| filterBy:searchTeams | orderBy:sortName:reverse"
                                           class="repeated-item secondary-button-padding" ng-click="showTeamInfo(team)">
-                                <div class="flexing50">
+                                <div class="flexing33">
                                     <h5 class="dwItem">
                                         {{team.name | limitTo:50}}
                                         <span ng-if="team.name.length > 50">...</span>
                                     </h5>
                                 </div>
-                                <div>
+                                <div class="flexTeam" hide-xs>
                                     <h5 ng-if="team.description">
                                         {{team.description | limitTo:100}}
                                         <span ng-if="team.description.length > 100">...</span>
@@ -72,7 +72,7 @@
                 <md-tooltip md-direction="left">Add Employee</md-tooltip>
                 <i class="fa fa-user"></i>
             </md-button>
-            <md-button aria-label="Add Team" class="md-primary md-fab md-mini">
+            <md-button aria-label="Add Team" class="md-primary md-fab md-mini" ng-click="addTeam()">
                 <md-tooltip md-direction="left">Add Team</md-tooltip>
                 <i class="fa fa-users"></i>
             </md-button>

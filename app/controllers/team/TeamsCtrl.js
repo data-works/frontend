@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('Dataworks.controllers')
-    .controller('TeamsCtrl', function($scope, $filter, APIservice, $mdDialog) {
+    .controller('TeamsCtrl', function($scope, $filter, APIservice, $mdDialog, $location, $mdToast) {
 
         $scope.nameFilter = null;
         $scope.teams = [];
         $scope.newTeam = {};
+        $scope.isEditingTeam = false;
 
         /**
          * Sorting
@@ -26,6 +27,21 @@ angular.module('Dataworks.controllers')
             $scope.teams = response;
         });
 
+        $scope.addNewTeam = function() {
+
+            APIservice.addTeam($scope.newTeam).success(function () {
+                APIservice.getTeams().success(function (response) {
+                    $scope.teams = response;
+                    if($location.$$path == '/teams') {
+                        $location.path('/team');
+                    } else if($location.$$path == '/employees') {
+                        $location.path('/employee');
+                    }
+
+                });
+            });
+        };
+
         /**
          * Dialog Functions
          * @param info
@@ -36,7 +52,8 @@ angular.module('Dataworks.controllers')
                 clickOutsideToClose : true,
                 controller: TeamDialogController,
                 locals:{
-                    team: info
+                    team: info,
+                    isEditingTeam: $scope.isEditingTeam
                 },
                 templateUrl: './views/teamInfo.html'
             });
@@ -52,10 +69,23 @@ angular.module('Dataworks.controllers')
 
         $scope.addTeam = function() {
             $mdDialog.show({
-                clickOutsideToClose : true,
+                clickOutsideToClose : false,
                 controller: AddDialog,
                 templateUrl: './views/addTeam.html'
             });
+        };
+
+        /**
+         * Toast Function
+         */
+
+        $scope.toastMessage = function(message) {
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent(message)
+                    .position('bottom right')
+                    .hideDelay(2000)
+            );
         };
     })
 
@@ -88,7 +118,7 @@ angular.module('Dataworks.controllers')
  Dialog Function(s)
  */
 
-function TeamDialogController($scope, $mdDialog, $location, team, APIservice) {
+function TeamDialogController($scope, $mdDialog, $location, team, APIservice, isEditingTeam, $mdToast) {
     $scope.team = team;
 
     $scope.hide = function() {
@@ -96,7 +126,21 @@ function TeamDialogController($scope, $mdDialog, $location, team, APIservice) {
     };
 
     $scope.cancel = function() {
+        $location.path('/team');
         $mdDialog.cancel();
+    };
+
+    $scope.softCancel = function() {
+        $mdDialog.cancel();
+    };
+
+    $scope.toastMessage = function(message) {
+        $mdToast.show(
+            $mdToast.simple()
+                .textContent(message)
+                .position('bottom right')
+                .hideDelay(2000)
+        );
     };
 
     $scope.delete = function() {
@@ -107,8 +151,11 @@ function TeamDialogController($scope, $mdDialog, $location, team, APIservice) {
         });
     };
 
+    $scope.toggleEditTeam = function () {
+        $scope.isEditingTeam = !isEditingTeam;
+    };
+
     $scope.edit = function() {
-        $scope.team.description = "temporary";
         APIservice.editTeam($scope.team).success( function () {
             console.log("Team edited.");
             $mdDialog.hide();
