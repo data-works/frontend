@@ -78,6 +78,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
     $scope.newEmails = [];
 
     $scope.addEmployee = function() {
+
         $scope.newEmail.primary = true;
         $scope.newAddress.primary = true;
         $scope.newAddress.country = "USA";
