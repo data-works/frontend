@@ -14,17 +14,17 @@
     <md-dialog-content>
         <md-content class="md-padding">
             <div>
-                <form ng-submit="addEmployee()">
+                <form name="addForm" ng-submit="addEmployee()">
 
                     <!-- Name -->
                     <div layout-gt-xs="row">
                         <md-input-container class="md-block" flex-gt-xs>
                             <label>First Name</label>
-                            <input required ng-model="newEmployee.firstName">
+                            <input md-maxlength="12" required ng-model="newEmployee.firstName">
                         </md-input-container>
                         <md-input-container class="md-block" flex-gt-xs>
                             <label>Last Name</label>
-                            <input required ng-model="newEmployee.lastName">
+                            <input md-maxlength="12" required ng-model="newEmployee.lastName">
                         </md-input-container>
                     </div>
 
@@ -96,7 +96,8 @@
     <md-dialog-actions layout="row" class="actionBar">
         <md-button ng-click="cancel(); toastMessage('The add operation was canceled.')" class="md-raised md-warn"
                    aria-label="Cancel Add">Cancel</md-button>
-        <md-button ng-click="addEmployee(); hide(); toastMessage('Added a new employee!')"
+        <md-button ng-disabled="addForm.$invalid"
+                   ng-click="addEmployee(); hide(); toastMessage('Added a new employee!')"
                    type="submit" class="md-raised md-primary"
                    aria-label="Add Button">Save</md-button>
     </md-dialog-actions>
