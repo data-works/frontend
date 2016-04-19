@@ -34,7 +34,7 @@
 
                 <md-dialog-actions layout="row" class="actionBar empInfoDialog">
                     <md-button class="md-raised md-warn" aria-label="Delete Button" ng-click="delete(); toastMessage('Deleted team.')">Delete</md-button>
-                    <md-button class="md-raised md-primary" aria-label="Edit Button" ng-click="toggleEditTeam(); toastMessage('Edited team!')">Edit</md-button>
+                    <md-button class="md-raised md-primary" aria-label="Edit Button" ng-click="toggleEditTeam()">Edit</md-button>
                 </md-dialog-actions>
             </form>
         </div>
@@ -42,7 +42,7 @@
         <!-- Editing -->
 
         <div ng-if="isEditingTeam">
-            <form>
+            <form name="teamEditForm">
                 <md-toolbar>
                     <div class="md-toolbar-tools dialogTB" layout-padding>
                         <span>
@@ -61,7 +61,7 @@
                     <div layout-gt-xs="row">
                         <md-input-container class="md-block" flex-gt-xs>
                             <label>Team Name</label>
-                            <input required ng-model="team.name">
+                            <input md-maxlength="20" required ng-model="team.name">
                         </md-input-container>
                     </div>
                     <div layout-gt-xs="row">
@@ -77,7 +77,8 @@
                 <md-dialog-actions layout="row" class="actionBar empInfoDialog">
                     <md-button class="md-raised md-warn" aria-label="Delete Button" ng-click="cancel();
                     toastMessage('Canceled the edit operation.')">Cancel</md-button>
-                    <md-button class="md-raised md-primary" aria-label="Edit Button" ng-click="edit();
+                    <md-button class="md-raised md-primary" aria-label="Edit Button"
+                               ng-disabled="teamEditForm.$invalid" ng-click="edit();
                     toastMessage('Edited team!')">Save</md-button>
                 </md-dialog-actions>
             </form>
