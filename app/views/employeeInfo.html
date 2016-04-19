@@ -1,19 +1,29 @@
 <md-dialog class="dialogWindow" aria-label="Employee Info">
+    <md-toolbar>
+        <div class="md-toolbar-tools dialogTB" layout-padding>
+            <span ng-if="!isEditing">
+                <h2><span>{{employee.firstName}} {{employee.lastName}}</span></h2>
+            </span>
+            <span ng-if="isEditing">
+                <h2>Edit Employee</h2>
+            </span>
+            <span flex></span>
+            <md-button ng-if="!isEditing" class="md-icon-button" ng-click="softCancel()"
+                       aria-label="Close Window">
+                <i class="fa fa-lg fa-times"></i>
+            </md-button>
+            <md-button ng-if="isEditing" class="md-icon-button" ng-click="cancel();
+             toastMessage('The edit operation was canceled.')" aria-label="Close Edit">
+                <i class="fa fa-lg fa-times"></i>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <!-- Employee Info -->
+
     <md-dialog-content>
-    <div ng-if="!isEditing">
-        <form>
-            <md-toolbar>
-                <div class="md-toolbar-tools dialogTB" layout-padding>
-                <span>
-                    <h2><span>{{employee.firstName}} {{employee.lastName}}</span></h2>
-                </span>
-                    <span flex></span>
-                    <md-button class="md-icon-button" ng-click="softCancel()"
-                               aria-label="Close Window">
-                        <i class="fa fa-lg fa-times"></i>
-                    </md-button>
-                </div>
-            </md-toolbar>
+        <div ng-if="!isEditing">
+            <form>
                 <md-content class="md-padding">
                     <div layout="row" layout-align="center center">
                         <h3 ng-if="employee.gender === 'female'">
@@ -131,36 +141,14 @@
                         </div>
                     </div>
                     <md-divider ng-if="employee.teams != null"></md-divider>
-
-                    <!-- End of Dialog -->
-
                 </md-content>
-
-            <!-- Action Buttons -->
-
-            <md-dialog-actions layout="row" class="actionBar empInfoDialog">
-                <md-button ng-click="delete(); toastMessage('Employee deleted.')" class="md-raised md-warn" aria-label="Delete Button">Delete</md-button>
-                <md-button ng-click="toggleEdit()" class="md-raised md-primary" aria-label="Edit Button">Edit</md-button>
-            </md-dialog-actions>
-        </form>
-    </div>
+            </form>
+        </div>
 
 
-    <!-- Edit -->
+        <!-- Edit -->
 
-    <div ng-if="isEditing">
-        <md-toolbar>
-            <div class="md-toolbar-tools dialogTB" layout-padding>
-            <span>
-                <h2>Add Employee</h2>
-            </span>
-                <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel(); toastMessage('The edit operation was canceled.')"
-                           aria-label="Close Edit">
-                    <i class="fa fa-lg fa-times"></i>
-                </md-button>
-            </div>
-        </md-toolbar>
+        <div ng-if="isEditing">
             <md-content class="md-padding">
                 <div>
                     <form>
@@ -242,13 +230,20 @@
                     </form>
                 </div>
             </md-content>
-        <md-dialog-actions layout="row" class="actionBar">
-            <md-button ng-click="cancel(); toastMessage('The edit operation was canceled.')" class="md-raised md-warn"
-                       aria-label="Cancel Editing">Cancel</md-button>
-            <md-button ng-click="edit(); toastMessage('Edited an employee!')"
-                       type="submit" class="md-raised md-primary"
-                       aria-label="Edit OK Button">Save</md-button>
-        </md-dialog-actions>
-    </div>
+        </div>
     </md-dialog-content>
+    <!-- Action Buttons -->
+
+    <md-dialog-actions ng-if="!isEditing" layout="row" class="actionBar empInfoDialog">
+        <md-button ng-click="delete(); toastMessage('Employee deleted.')" class="md-raised md-warn" aria-label="Delete Button">Delete</md-button>
+        <md-button ng-click="toggleEdit()" class="md-raised md-primary" aria-label="Edit Button">Edit</md-button>
+    </md-dialog-actions>
+
+    <md-dialog-actions ng-if="isEditing" layout="row" class="actionBar">
+        <md-button ng-click="cancel(); toastMessage('The edit operation was canceled.')" class="md-raised md-warn"
+                   aria-label="Cancel Editing">Cancel</md-button>
+        <md-button ng-click="edit(); toastMessage('Edited an employee!')"
+                   type="submit" class="md-raised md-primary"
+                   aria-label="Edit OK Button">Save</md-button>
+    </md-dialog-actions>
 </md-dialog>
