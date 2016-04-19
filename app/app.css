@@ -85,6 +85,10 @@ Dialog
     width: 70%;
 }
 
+.parentContainer {
+    overflow: hidden;
+}
+
 .dialogTB {
     padding: 1.3em 0.7em;
 }
