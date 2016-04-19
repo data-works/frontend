@@ -272,7 +272,6 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 
     .filter('tel', function () {
         return function (tel) {
-            console.log(tel);
             if (!tel) { return ''; }
 
             var value = tel.toString().trim().replace(/^\+/, '');
@@ -319,6 +318,20 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
 function EmployeeDialogController($scope, $mdDialog, $location, $filter, employee, APIservice, $mdToast, isEditing, newEmployee) {
     $scope.employee = employee;
 
+    // Genders
+    $scope.genders = [
+        {type: "Male", value: "male"},
+        {type: "Female", value: "female"},
+        {type: "Prefer Not To Specify", value: null}
+    ];
+
+    // States
+    $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
+    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+    'WY').split(' ').map(function(state) {
+        return {abbrev: state};
+    });
+
     $scope.getPrimaryItem = function (items) {
         return $filter('filter')(items, {primary:true})[0];
     };
@@ -357,7 +370,48 @@ function EmployeeDialogController($scope, $mdDialog, $location, $filter, employe
         $scope.isEditing = !isEditing;
     };
 
+    $scope.newAddress = {};
+    $scope.newAddresses = [];
+    $scope.newEmail = {};
+    $scope.newEmails = [];
+    $scope.newPhone = {};
+    $scope.newPhones = [];
+
     $scope.edit = function() {
+
+
+        $scope.newEmail.primary = true;
+        $scope.newAddress.primary = true;
+        $scope.newAddress.country = "USA";
+        $scope.newPhone.primary = true;
+
+        if($scope.newEmail.email !== undefined) {
+            $scope.newEmails.push($scope.newEmail);
+            $scope.employee.emails = $scope.newEmails;
+        }
+
+        if($scope.newPhone.number !== undefined) {
+            $scope.newPhones.push($scope.newPhone);
+            $scope.employee.telephones = $scope.newPhones;
+        }
+
+        if($scope.newAddress.line1 !== undefined) {
+            if($scope.newAddress.line2 === undefined) {
+                $scope.newAddress.line2 = "";
+            }
+            if($scope.newAddress.city === undefined) {
+                $scope.newAddress.city = "";
+            }
+            if($scope.newAddress.postalCode === undefined) {
+                $scope.newAddress.postalCode = "";
+            }
+            if($scope.newAddress.state === undefined) {
+                $scope.newAddress.state = "";
+            }
+            $scope.newAddresses.push($scope.newAddress);
+            $scope.employee.addresses = $scope.newAddresses;
+        }
+
         APIservice.editEmployee($scope.employee).success( function () {
             console.log("Employee edited.");
             $mdDialog.hide();
