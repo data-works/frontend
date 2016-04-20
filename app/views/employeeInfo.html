@@ -279,12 +279,20 @@
 
                         <!-- Task -->
                         <md-input-container ng-if="employee.tasks" class="md-block">
-                            <label>Task</label>
-                            <textarea ng-model="getPrimaryItem(employee.tasks).task" md-maxlength="250" rows="5"></textarea>
+                            <label>Task Name</label>
+                            <input md-maxlength="20" ng-model="getPrimaryItem(employee.tasks).name">
                         </md-input-container>
-                        <md-input-container class="md-block">
+                        <md-input-container ng-if="!employee.tasks" class="md-block">
+                            <label>Task Name</label>
+                            <input md-maxlength="20" ng-model="newTask.name">
+                        </md-input-container>
+                        <md-input-container ng-if="employee.tasks" class="md-block">
                             <label>Task</label>
-                            <textarea ng-model="newTask.task" md-maxlength="250" rows="5"></textarea>
+                            <textarea ng-model="getPrimaryItem(employee.tasks).description" md-maxlength="250" rows="5"></textarea>
+                        </md-input-container>
+                        <md-input-container ng-if="!employee.tasks" class="md-block">
+                            <label>Task</label>
+                            <textarea ng-model="newTask.description" md-maxlength="250" rows="5"></textarea>
                         </md-input-container>
 
                     </div>

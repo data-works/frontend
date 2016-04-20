@@ -107,8 +107,12 @@
 
                     <!-- Task -->
                     <md-input-container class="md-block">
-                        <label>Task</label>
-                        <textarea ng-model="newTask.task" md-maxlength="250" rows="5"></textarea>
+                        <label>Task Name</label>
+                        <input md-maxlength="20" ng-model="newTask.name">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Task Description</label>
+                        <textarea ng-model="newTask.description" md-maxlength="250" rows="5"></textarea>
                     </md-input-container>
                 </form>
             </div>

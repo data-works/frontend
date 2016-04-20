@@ -100,6 +100,12 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
             }
 
             if($scope.newTask.task !== undefined) {
+                if ($scope.newTask.name !== undefined) {
+                    $scope.newTask.name = "";
+                }
+                if ($scope.newTask.description !== undefined) {
+                    $scope.newTask.description = "";
+                }
                 $scope.newTasks.push($scope.newTask);
                 $scope.newEmployee.tasks = $scope.newTasks;
             }
@@ -432,6 +438,12 @@ function EmployeeDialogController($scope, $mdDialog, $location, $filter, employe
         }
 
         if($scope.newTask.task !== undefined) {
+            if ($scope.newTask.name !== undefined) {
+                $scope.newTask.name = "";
+            }
+            if ($scope.newTask.description !== undefined) {
+                $scope.newTask.description = "";
+            }
             $scope.newTasks.push($scope.newTask);
             $scope.newEmployee.tasks = $scope.newTasks;
         }
