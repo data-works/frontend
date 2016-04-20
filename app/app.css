@@ -20,8 +20,8 @@ md-switch.md-checked .md-thumb {
 
 md-fab-speed-dial.md-fab-bottom-right {
     top: auto;
-    right: 20px;
-    bottom: 20px;
+    right: 15px;
+    bottom: 15px;
     left: auto;
     position: fixed;
 }

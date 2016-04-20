@@ -359,11 +359,37 @@ function EmployeeDialogController($scope, $mdDialog, $location, $filter, employe
     };
 
     $scope.delete = function() {
-        APIservice.deleteEmployee($scope.employee).success( function () {
-            console.log("Employee deleted.");
-            $location.path('/employee');
-            $mdDialog.hide();
-        });
+        $mdDialog.show({
+            clickOutsideToClose: false,
+            skipHide: true,
+            controllerAs: 'deleteCtrl',
+            controller: function ($mdDialog) {
+                this.click = function () {
+                    APIservice.deleteEmployee($scope.employee).success( function () {
+                        console.log("Employee deleted.");
+                        $location.path('/employee');
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .textContent('Employee deleted.')
+                                .position('bottom right')
+                                .hideDelay(2000)
+                        );
+                        $mdDialog.hide();
+                        $mdDialog.hide();
+                    });
+                };
+                this.cancel = function () {
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .textContent('Delete operation canceled.')
+                            .position('bottom right')
+                            .hideDelay(2000)
+                    );
+                    $mdDialog.cancel();
+                };
+            },
+            templateUrl: './views/deleteConfirm.html'
+        })
     };
 
     $scope.toggleEdit = function () {
