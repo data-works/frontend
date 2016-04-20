@@ -99,11 +99,8 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
                 $scope.newEmployee.telephones = $scope.newPhones;
             }
 
-            if($scope.newTask.task !== undefined) {
-                if ($scope.newTask.name !== undefined) {
-                    $scope.newTask.name = "";
-                }
-                if ($scope.newTask.description !== undefined) {
+            if($scope.newTask.name !== undefined) {
+                if ($scope.newTask.description === undefined) {
                     $scope.newTask.description = "";
                 }
                 $scope.newTasks.push($scope.newTask);
