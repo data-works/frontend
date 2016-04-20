@@ -144,11 +144,37 @@ function TeamDialogController($scope, $mdDialog, $location, team, APIservice, is
     };
 
     $scope.delete = function() {
-        APIservice.deleteTeam($scope.team).success( function () {
-            console.log("Team deleted.");
-            $location.path('/team');
-            $mdDialog.hide();
-        });
+        $mdDialog.show({
+            clickOutsideToClose: false,
+            skipHide: true,
+            controllerAs: 'deleteCtrl',
+            controller: function ($mdDialog) {
+                this.click = function () {
+                    APIservice.deleteTeam($scope.team).success( function () {
+                        console.log("Team deleted.");
+                        $location.path('/team');
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .textContent('Team deleted.')
+                                .position('bottom right')
+                                .hideDelay(2000)
+                        );
+                        $mdDialog.hide();
+                        $mdDialog.hide();
+                    });
+                };
+                this.cancel = function () {
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .textContent('Delete operation canceled.')
+                            .position('bottom right')
+                            .hideDelay(2000)
+                    );
+                    $mdDialog.cancel();
+                };
+            },
+            templateUrl: './views/deleteConfirm.html'
+        })
     };
 
     $scope.toggleEditTeam = function () {
