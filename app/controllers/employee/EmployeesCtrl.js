@@ -434,15 +434,12 @@ function EmployeeDialogController($scope, $mdDialog, $location, $filter, employe
             $scope.employee.telephones = $scope.newPhones;
         }
 
-        if($scope.newTask.task !== undefined) {
-            if ($scope.newTask.name !== undefined) {
-                $scope.newTask.name = "";
-            }
-            if ($scope.newTask.description !== undefined) {
+        if($scope.newTask.name !== undefined) {
+            if ($scope.newTask.description === undefined) {
                 $scope.newTask.description = "";
             }
             $scope.newTasks.push($scope.newTask);
-            $scope.newEmployee.tasks = $scope.newTasks;
+            $scope.employee.tasks = $scope.newTasks;
         }
 
         if($scope.newAddress.line1 !== undefined) {
