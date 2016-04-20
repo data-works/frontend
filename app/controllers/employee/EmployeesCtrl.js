@@ -78,6 +78,8 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
         $scope.newEmails = [];
         $scope.newPhone = {};
         $scope.newPhones = [];
+        $scope.newTask = {};
+        $scope.newTasks = [];
 
         $scope.addEmployee = function() {
 
@@ -85,6 +87,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
             $scope.newAddress.primary = true;
             $scope.newAddress.country = "USA";
             $scope.newPhone.primary = true;
+            $scope.newTask.primary = true;
 
             if($scope.newEmail.email !== undefined) {
                 $scope.newEmails.push($scope.newEmail);
@@ -94,6 +97,11 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
             if($scope.newPhone.number !== undefined) {
                 $scope.newPhones.push($scope.newPhone);
                 $scope.newEmployee.telephones = $scope.newPhones;
+            }
+
+            if($scope.newTask.task !== undefined) {
+                $scope.newTasks.push($scope.newTask);
+                $scope.newEmployee.tasks = $scope.newTasks;
             }
 
             if($scope.newAddress.line1 !== undefined) {
@@ -402,6 +410,8 @@ function EmployeeDialogController($scope, $mdDialog, $location, $filter, employe
     $scope.newEmails = [];
     $scope.newPhone = {};
     $scope.newPhones = [];
+    $scope.newTask = {};
+    $scope.newTasks = [];
 
     $scope.edit = function() {
 
@@ -419,6 +429,11 @@ function EmployeeDialogController($scope, $mdDialog, $location, $filter, employe
         if($scope.newPhone.number !== undefined) {
             $scope.newPhones.push($scope.newPhone);
             $scope.employee.telephones = $scope.newPhones;
+        }
+
+        if($scope.newTask.task !== undefined) {
+            $scope.newTasks.push($scope.newTask);
+            $scope.newEmployee.tasks = $scope.newTasks;
         }
 
         if($scope.newAddress.line1 !== undefined) {

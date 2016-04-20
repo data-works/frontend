@@ -1,7 +1,7 @@
 <div ng-controller="EmployeesCtrl as sc" layout="row" layout-align="center center" class="parentContainer ng-scope layout-align-center-center layout-row flex">
     <div flex="95" flex-gt-xs="95" flex-gt-sm="90" flex-gt-md="80" flex-gt-lg="65"
          class="ng-scope flex-gt-xs-95 flex-gt-sm-90 flex-gt-md-80 flex-gt-lg-65 flex-95" layout-padding>
-        <form layout layout-align="center" layout-padding>
+        <form layout-align="center">
             <div layout="row" flex>
                 <md-input-container flex class="md-block">
                     <input flex type="text" placeholder="Search" ng-model="searchEmployees">
@@ -47,12 +47,17 @@
                             <md-list-item md-virtual-repeat="e in employees | filterBy:searchEmployees | orderBy:customSort:reverse"
                                           class="repeated-item secondary-button-padding" ng-click="showEmployeeInfo(e)">
                                 <div class="flexing50">
-                                    <h5 class="dwItem">{{e.firstName}} {{e.lastName}}</h5>
+                                    <h5 class="dwItem">
+                                        {{e.firstName}} <span hide-xs>{{e.lastName}}</span>
+                                        <span hide-gt-xs>{{e.lastName | limitTo:1}}.</span>
+                                    </h5>
                                 </div>
                                 <div class="flexing50">
                                     <h5 ng-if="e.emails">
-                                        {{getPrimaryItem(e.emails).email | limitTo:20}}
-                                        <span ng-if="getPrimaryItem(e.emails).email.length > 20">...</span>
+                                        <span hide-xs>{{getPrimaryItem(e.emails).email | limitTo:20}}</span>
+                                        <span hide-gt-xs>{{getPrimaryItem(e.emails).email | limitTo:10}}</span>
+                                        <span hide-gt-xs ng-if="getPrimaryItem(e.emails).email.length > 10">...</span>
+                                        <span hide-xs ng-if="getPrimaryItem(e.emails).email.length > 20">...</span>
                                     </h5>
                                     <h5 ng-if="!e.emails">None</h5>
                                 </div>

@@ -28,14 +28,14 @@
                     <div layout="row" layout-align="center center">
                         <h3 ng-if="employee.gender === 'female'">
                             <i class="fa fa-female"></i>
-                            {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
+                            {{employee.firstName}} {{employee.lastName}}
                         </h3>
                         <h3 ng-if="employee.gender === 'male'">
                             <i class="fa fa-male"></i>
-                            {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
+                            {{employee.firstName}} {{employee.lastName}}
                         </h3>
                         <h3 ng-if="employee.gender == null">
-                            {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}
+                            {{employee.firstName}} {{employee.lastName}}
                         </h3>
                     </div>
                     <div ng-if="employee.title != null" layout="row" layout-align="center center">
@@ -162,6 +162,12 @@
                             </md-input-container>
                         </div>
 
+                        <!-- Title -->
+                        <md-input-container class="md-block">
+                            <label>Title</label>
+                            <input ng-model="employee.title" md-maxlength="20">
+                        </md-input-container>
+
                         <!-- Personal Information -->
                         <div layout-gt-xs="row">
                             <md-input-container class="md-block" flex-gt-xs>
@@ -270,6 +276,17 @@
                                        ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
                             </md-input-container>
                         </div>
+
+                        <!-- Task -->
+                        <md-input-container ng-if="employee.tasks" class="md-block">
+                            <label>Task</label>
+                            <textarea ng-model="getPrimaryItem(employee.tasks).task" md-maxlength="250" rows="5"></textarea>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Task</label>
+                            <textarea ng-model="newTask.task" md-maxlength="250" rows="5"></textarea>
+                        </md-input-container>
+
                     </div>
                 </md-content>
             </div>

@@ -28,6 +28,12 @@
                         </md-input-container>
                     </div>
 
+                    <!-- Title -->
+                    <md-input-container class="md-block">
+                        <label>Title</label>
+                        <input ng-model="newEmployee.title" md-maxlength="20">
+                    </md-input-container>
+
                     <!-- Personal Information -->
                     <div layout-gt-xs="row">
                         <md-input-container class="md-block" flex-gt-xs>
@@ -98,6 +104,12 @@
                                    ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
                         </md-input-container>
                     </div>
+
+                    <!-- Task -->
+                    <md-input-container class="md-block">
+                        <label>Task</label>
+                        <textarea ng-model="newTask.task" md-maxlength="250" rows="5"></textarea>
+                    </md-input-container>
                 </form>
             </div>
         </md-content>
