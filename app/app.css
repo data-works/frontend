@@ -89,6 +89,10 @@ Dialog
     overflow: hidden;
 }
 
+md-toast {
+    position: fixed;
+}
+
 .dialogTB {
     padding: 1.3em 0.7em;
 }
@@ -125,6 +129,10 @@ Dialog
         max-width:85%;
         max-height:85%;
         width: 85%;
+    }
+
+    md-select {
+        padding-bottom: 1.3em;
     }
 }
 

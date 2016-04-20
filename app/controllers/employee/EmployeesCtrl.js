@@ -315,7 +315,7 @@ angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
  Dialog Function(s)
  */
 
-function EmployeeDialogController($scope, $mdDialog, $location, $filter, employee, APIservice, $mdToast, isEditing, newEmployee) {
+function EmployeeDialogController($scope, $mdDialog, $location, $filter, employee, APIservice, $mdToast, isEditing) {
     $scope.employee = employee;
 
     // Genders
