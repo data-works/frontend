@@ -423,6 +423,7 @@ function EmployeeDialogController($scope, $mdDialog, $location, $filter, employe
         $scope.newAddress.primary = true;
         $scope.newAddress.country = "USA";
         $scope.newPhone.primary = true;
+        $scope.newTask.primary = true;
 
         if($scope.newEmail.email !== undefined) {
             $scope.newEmails.push($scope.newEmail);

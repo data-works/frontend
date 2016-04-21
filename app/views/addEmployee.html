@@ -20,18 +20,18 @@
                     <div layout-gt-xs="row">
                         <md-input-container class="md-block" flex-gt-xs>
                             <label>First Name</label>
-                            <input md-maxlength="12" required ng-model="newEmployee.firstName">
+                            <input md-maxlength="20" required ng-model="newEmployee.firstName">
                         </md-input-container>
                         <md-input-container class="md-block" flex-gt-xs>
                             <label>Last Name</label>
-                            <input md-maxlength="12" required ng-model="newEmployee.lastName">
+                            <input md-maxlength="30" required ng-model="newEmployee.lastName">
                         </md-input-container>
                     </div>
 
                     <!-- Title -->
                     <md-input-container class="md-block">
                         <label>Title</label>
-                        <input ng-model="newEmployee.title" md-maxlength="20">
+                        <input ng-model="newEmployee.title" md-maxlength="40">
                     </md-input-container>
 
                     <!-- Personal Information -->
@@ -72,7 +72,7 @@
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Address</label>
-                            <input md-maxlength="20" ng-model="newAddress.line1">
+                            <input md-maxlength="40" ng-model="newAddress.line1">
                         </md-input-container>
 
                         <div flex="5" hide-xs hide-sm>
@@ -81,14 +81,14 @@
 
                         <md-input-container md-no-float class="md-block" flex-gt-sm>
                             <label>Address Line 2 (If Applicable)</label>
-                            <input md-maxlength="15" ng-model="newAddress.line2">
+                            <input md-maxlength="40" ng-model="newAddress.line2">
                         </md-input-container>
                     </div>
 
                     <div layout-gt-xs="row">
                         <md-input-container class="md-block" flex-gt-xs>
                             <label>City</label>
-                            <input md-maxlength="20" ng-model="newAddress.city">
+                            <input md-maxlength="35" ng-model="newAddress.city">
                         </md-input-container>
                         <md-input-container class="md-block" flex-gt-xs>
                             <label>State</label>
@@ -108,11 +108,11 @@
                     <!-- Task -->
                     <md-input-container class="md-block">
                         <label>Task Name</label>
-                        <input md-maxlength="20" ng-model="newTask.name">
+                        <input md-maxlength="40" ng-model="newTask.name">
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Task Description</label>
-                        <textarea ng-model="newTask.description" md-maxlength="250" rows="5"></textarea>
+                        <textarea ng-model="newTask.description" md-maxlength="400" rows="5"></textarea>
                     </md-input-container>
                 </form>
             </div>
