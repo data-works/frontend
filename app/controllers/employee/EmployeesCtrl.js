@@ -333,7 +333,7 @@ function EmployeeDialogController($scope, $mdDialog, $location, $filter, employe
     $scope.genders = [
         {type: "Male", value: "male"},
         {type: "Female", value: "female"},
-        {type: "Prefer Not To Specify", value: null}
+        {type: "Prefer Not To Specify", value: "none"}
     ];
 
     // States

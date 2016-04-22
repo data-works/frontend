@@ -34,7 +34,7 @@
                             <i class="fa fa-male"></i>
                             {{employee.firstName}} {{employee.lastName}}
                         </h3>
-                        <h3 ng-if="employee.gender == null">
+                        <h3 ng-if="employee.gender === 'none' || employee.gender === undefined">
                             {{employee.firstName}} {{employee.lastName}}
                         </h3>
                     </div>
@@ -171,8 +171,7 @@
                         <!-- Personal Information -->
                         <div layout-gt-xs="row">
                             <md-input-container class="md-block" flex-gt-xs>
-                                <!--<label ng-if="employee.gender === null"></label>-->
-                                <label ng-if="employee.gender != null">Gender</label>
+                                <label>Gender</label>
                                 <md-select ng-model="employee.gender" aria-label="Select gender">
                                     <md-option ng-repeat="gender in genders" value="{{gender.value}}">
                                         {{gender.type}}
@@ -181,8 +180,8 @@
                             </md-input-container>
                             <md-input-container class="md-block" flex-gt-xs>
                                 <label>Birthday</label>
-                                <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" ng-model="employee.birthdate"
-                                       placeholder="MM/DD/YYYY" min="1900-01-01">
+                                <input ng-model="employee.birthdate"
+                                       placeholder="YYYY-MM-DD" ng-pattern="/^(([0-9]{4})-([0-9]{2})-([0-9]{2}))$/">
                             </md-input-container>
                         </div>
 
