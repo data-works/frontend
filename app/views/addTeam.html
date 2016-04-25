@@ -20,7 +20,10 @@
                     <div layout-gt-xs="row">
                         <md-input-container class="md-block" flex-gt-xs>
                             <label>Team Name</label>
-                            <input md-maxlength="40" required ng-model="newTeam.name">
+                            <input name="team_name" md-maxlength="40" required ng-model="newTeam.name">
+                            <div ng-messages="teamAddForm.team_name.$error" role="alert">
+                                <div ng-message="required">This field is required.</div>
+                            </div>
                         </md-input-container>
                     </div>
                     <div layout-gt-xs="row">

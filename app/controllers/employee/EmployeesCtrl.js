@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial'])
+angular.module('Dataworks.controllers', ['ngRoute', 'ngMaterial', 'ngMessages'])
 
     .config(function($mdThemingProvider) {
         $mdThemingProvider
